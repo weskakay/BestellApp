@@ -7,7 +7,11 @@ let deliverySelected = true; // Standardmäßig auf Lieferung gesetzt
 const restaurants = {
     italian: {
         name: "Italienisches Restaurant",
+        fullName: "La Dolce Vita",
         image: "/assets/img/Restaurants/Italien.jpg",
+        description: "Genießen Sie authentische italienische Küche mit frischen Zutaten und traditionellen Rezepten.",
+        rating: 4.5,
+        deliveryPrice: 2.50,
         dishes: {
             appetizers: [
                 { name: "Bruschetta", price: 5.50, image: "/assets/img/Vorspeise/Bruschetta.jpg" },
@@ -28,7 +32,11 @@ const restaurants = {
     },
     asian: {
         name: "Asiatisches Restaurant",
+        fullName: "Sakura Garden",
         image: "/assets/img/Restaurants/Asien.jpg",
+        description: "Erleben Sie die Vielfalt der asiatischen Küche mit exotischen Aromen und Gewürzen.",
+        rating: 4.5,
+        deliveryPrice: 3.00,
         dishes: {
             appetizers: [
                 { name: "Frühlingsrollen", price: 4.50, image: "/assets/img/Vorspeise/Fruehlingsrollen.jpg" },
@@ -48,8 +56,12 @@ const restaurants = {
         }
     },
     fusion: {
-        name: "Fusion Restaurant",
+        name: "fusion",
+        fullName: "La Fusion Restaurante",
         image: "/assets/img/Restaurants/Fusion.jpg",
+        description: "Eine kreative Mischung aus verschiedenen Küchenstilen für ein einzigartiges Geschmackserlebnis.",
+        rating: 5.0,
+        deliveryPrice: 2.00,
         dishes: {
             appetizers: [
                 { name: "Taco Bites", price: 6.00, image: "/assets/img/Vorspeise/TacoBites.jpg" },
@@ -126,6 +138,7 @@ function toggleRestaurant(restaurantKey) {
 
 function renderRestaurants() {
     const restaurantSelection = document.querySelector('.restaurant-selection');
+    restaurantSelection.innerHTML = ''; // Leeren des Containers
 
     Object.keys(restaurants).forEach(key => {
         const restaurant = restaurants[key];
@@ -134,15 +147,48 @@ function renderRestaurants() {
         restaurantElement.id = key;
         restaurantElement.onclick = () => toggleRestaurant(key);
 
-        // Dynamisch das Bild und den Namen hinzufügen
+        // Erzeugen der Sternebewertung
+        const starRating = generateStarRating(restaurant.rating);
+
+        // Dynamisch das Bild und die Informationen hinzufügen
         restaurantElement.innerHTML = `
-            <img src="${restaurant.image}" alt="${restaurant.name}">
-            <h3>${restaurant.name}</h3>
+            <img src="${restaurant.image}" alt="${restaurant.fullName}">
+            <div class="restaurant-info">
+                <h3>${restaurant.fullName}</h3>
+                <div class="restaurant-rating">
+                    ${starRating} (${restaurant.rating} von 5)
+                </div>
+                <p>${restaurant.description}</p>
+                <p>Lieferkosten: ${restaurant.deliveryPrice.toFixed(2)} €</p>
+            </div>
         `;
 
         restaurantSelection.appendChild(restaurantElement);
     });
 }
+// This feature creates a visual representation of the star rating.
+function generateStarRating(rating) {
+    const fullStars = Math.floor(rating);
+    const halfStar = rating % 1 >= 0.5;
+    let starsHTML = '';
+
+    for (let i = 0; i < fullStars; i++) {
+        starsHTML += '<span class="star full">★</span>';
+    }
+
+    if (halfStar) {
+        starsHTML += '<span class="star half">★</span>';
+    }
+
+    const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+    for (let i = 0; i < emptyStars; i++) {
+        starsHTML += '<span class="star empty">☆</span>';
+    }
+
+    return starsHTML;
+}
+
+
 
 function loadMenu(restaurantKey, container) {
     const restaurant = restaurants[restaurantKey];
@@ -254,11 +300,27 @@ function removeItem(index) {
 function calculateTotal() {
     let subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
     let total = subtotal;
+    let deliveryCost = 0;
 
-    // Berechne Lieferkosten nur, wenn Lieferung ausgewählt ist
+    const orderBtn = document.getElementById('order-btn');
+    const orderMessage = document.getElementById('order-message');
+
     if (deliverySelected) {
-        total += deliveryFee;
-        document.getElementById('delivery-cost').innerText = `${deliveryFee.toFixed(2)} €`;
+        // Überprüfen, ob ein Restaurant ausgewählt ist
+        if (selectedRestaurant && restaurants[selectedRestaurant]) {
+            // Hole die Liefergebühr des ausgewählten Restaurants
+            deliveryCost = restaurants[selectedRestaurant].deliveryPrice;
+            total += deliveryCost;
+            document.getElementById('delivery-cost').innerText = `${deliveryCost.toFixed(2)} €`;
+        } else {
+            // Falls kein Restaurant ausgewählt ist, setzen Sie die Lieferkosten auf 0
+            document.getElementById('delivery-cost').innerText = `0,00 €`;
+            orderMessage.innerText = "Bitte wählen Sie ein Restaurant aus.";
+            orderMessage.style.display = 'block'; // Zeigt die Nachricht an
+            orderBtn.disabled = true;
+            orderBtn.classList.remove('active');
+            return; // Beenden Sie die Funktion, da kein gültiges Restaurant ausgewählt ist
+        }
     } else {
         document.getElementById('delivery-cost').innerText = `0,00 €`;
     }
@@ -266,21 +328,20 @@ function calculateTotal() {
     document.getElementById('subtotal').innerText = `${subtotal.toFixed(2)} €`;
     document.getElementById('total-cost').innerText = `${total.toFixed(2)} €`;
 
-    const orderBtn = document.getElementById('order-btn');
-    const orderMessage = document.getElementById('order-message');
-
+    // Überprüfen Sie, ob der Mindestbestellwert erreicht ist
     if (total < minOrderValue) {
         orderBtn.disabled = true;
-        orderBtn.classList.remove('active'); // Entferne den aktiven Stil
-        orderMessage.innerText = "Bitte den Mindestbestellwert beachten.";
-        orderMessage.style.display = 'block'; // Zeigt die Nachricht an
+        orderBtn.classList.remove('active');
+        orderMessage.innerText = `Der Mindestbestellwert beträgt ${minOrderValue.toFixed(2)} €.`;
+        orderMessage.style.display = 'block';
     } else {
         orderBtn.disabled = false;
-        orderBtn.classList.add('active'); // Füge den aktiven Stil hinzu
+        orderBtn.classList.add('active');
         orderMessage.innerText = "";
-        orderMessage.style.display = 'none'; // Versteckt die Nachricht
+        orderMessage.style.display = 'none';
     }
 }
+
 
 function placeOrder() {
     alert("Danke für Ihre Bestellung! Ihre Bestellung wird bearbeitet.");

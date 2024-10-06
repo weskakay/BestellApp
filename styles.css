@@ -90,6 +90,72 @@ header {
     transform: scale(1.1); /* Vergrößert das Bild leicht beim Hover */
 }
 
+/* Stil für Restaurantinformationen */
+.restaurant-info {
+    padding: 10px;
+}
+
+.restaurant-info h3 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: #E0E0E0; /* Standardfarbe des Namens */
+    transition: color 0.3s; /* Übergang für die Farbänderung */
+}
+/* Hover-Effekt für den Restaurantnamen, wenn das Restaurant gehovered wird */
+.restaurant:hover .restaurant-info h3 {
+    color: #00FFFF; /* Neonblau für den Hover-Zustand */
+}
+
+.restaurant-info p {
+    margin: 5px 0;
+}
+
+/* Spezifische Stile für die Beschreibung */
+.restaurant-info .restaurant-description {
+    margin-bottom: 10px; /* Fügt zusätzlichen Abstand unter der Beschreibung hinzu */
+    color: #E0E0E0; /* Standardfarbe */
+}
+
+/* Spezifische Stile für die Lieferkosten */
+.restaurant-info .restaurant-delivery {
+    margin-top: 10px; /* Fügt zusätzlichen Abstand über den Lieferkosten hinzu */
+    font-weight: bold; /* Hebt die Lieferkosten hervor */
+    color: #00FFFF; /* Neonblau für Lieferkosten */
+}
+
+/* Optional: Anpassung des Abstands zwischen Bewertung und Beschreibung */
+.restaurant-info .restaurant-rating {
+    margin-bottom: 10px;
+}
+.restaurant-rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.star {
+    font-size: 20px;
+    color: #FFD700; /* Goldene Farbe für Sterne */
+    margin-right: 2px;
+}
+
+.star.half {
+    position: relative;
+}
+
+.star.half::before {
+    content: '★';
+    position: absolute;
+    left: 0;
+    width: 50%;
+    overflow: hidden;
+    color: #FFD700;
+}
+
+.star.empty {
+    color: #555; /* Gedämpfte Farbe für leere Sterne */
+}
+
 /* Stil für Speisenkategorien */
 .dish-category {
     margin-bottom: 20px; /* Abstand zwischen den Kategorien */
@@ -561,6 +627,20 @@ header {
 @media screen and (max-width: 600px) {
     header {
         padding: 10px; /* Weniger Polsterung für den Header */
+    }
+
+    .restaurant {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .restaurant img {
+        width: 100%;
+    }
+
+    .restaurant-info {
+        padding: 0;
+        text-align: center;
     }
 
     .restaurant-logo {
