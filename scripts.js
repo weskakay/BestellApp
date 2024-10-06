@@ -323,31 +323,125 @@ function showPage(event, pageId) {
             `;
             break;
         case 'geschaeftEmpfehlen':
-            content = `<h2>Ein Geschäft empfehlen</h2><p>Hier können Sie ein Geschäft empfehlen...</p>`;
+            content = `
+                <h2>Ein Geschäft empfehlen</h2>
+                <p>Empfehlen Sie uns ein Geschäft, das wir in unser Angebot aufnehmen sollen:</p>
+                <form id="recommend-form">
+                    <label for="store-name">Name des Geschäfts:</label>
+                    <input type="text" id="store-name" name="store-name" required>
+                    <label for="store-address">Adresse:</label>
+                    <input type="text" id="store-address" name="store-address" required>
+                    <label for="store-contact">Kontaktinformationen:</label>
+                    <input type="text" id="store-contact" name="store-contact" required>
+                    <button type="submit">Absenden</button>
+                </form>
+                <div id="recommend-message"></div>
+            `;
             break;
         case 'geschaeftAnmelden':
-            content = `<h2>Ein Geschäft anmelden</h2><p>Hier können Sie Ihr Geschäft anmelden...</p>`;
+            content = `
+                <h2>Ein Geschäft anmelden</h2>
+                <p>Melden Sie Ihr Geschäft an, um Teil unserer Plattform zu werden:</p>
+                <form id="register-form">
+                    <label for="business-name">Geschäftsname:</label>
+                    <input type="text" id="business-name" name="business-name" required>
+                    <label for="owner-name">Inhaber*in:</label>
+                    <input type="text" id="owner-name" name="owner-name" required>
+                    <label for="business-address">Adresse:</label>
+                    <input type="text" id="business-address" name="business-address" required>
+                    <label for="business-email">E-Mail:</label>
+                    <input type="email" id="business-email" name="business-email" required>
+                    <label for="business-phone">Telefonnummer:</label>
+                    <input type="tel" id="business-phone" name="business-phone" required>
+                    <button type="submit">Anmelden</button>
+                </form>
+                <div id="register-message"></div>
+            `;
             break;
         case 'fahrerWerden':
-            content = `<h2>Fahrer*in werden</h2><p>Hier erfahren Sie, wie Sie Fahrer*in werden können...</p>`;
+            content = `
+                <h2>Fahrer*in werden</h2>
+                <p>Werden Sie Teil unseres Teams und liefern Sie Freude direkt an die Tür unserer Kunden!</p>
+                <form id="driver-form">
+                    <label for="applicant-name">Ihr Name:</label>
+                    <input type="text" id="applicant-name" name="applicant-name" required>
+                    <label for="applicant-email">E-Mail:</label>
+                    <input type="email" id="applicant-email" name="applicant-email" required>
+                    <label for="applicant-phone">Telefonnummer:</label>
+                    <input type="tel" id="applicant-phone" name="applicant-phone" required>
+                    <label for="availability">Verfügbarkeit:</label>
+                    <textarea id="availability" name="availability" required></textarea>
+                    <button type="submit">Bewerben</button>
+                </form>
+                <div id="driver-message"></div>
+            `;
             break;
         case 'jobs':
-            content = `<h2>Jobs</h2><p>Hier finden Sie Informationen zu offenen Stellen...</p>`;
+            content = `
+                <h2>Jobs</h2>
+                <p>Entdecken Sie spannende Karrieremöglichkeiten bei uns:</p>
+                <ul>
+                    <li><strong>Kundenservice-Mitarbeiter*in</strong> - <a href="#" onclick="applyJob('kundenservice')">Jetzt bewerben</a></li>
+                    <li><strong>Marketing-Spezialist*in</strong> - <a href="#" onclick="applyJob('marketing')">Jetzt bewerben</a></li>
+                    <li><strong>Software-Entwickler*in</strong> - <a href="#" onclick="applyJob('entwicklung')">Jetzt bewerben</a></li>
+                </ul>
+                <div id="job-message"></div>
+            `;
             break;
         case 'stempelkarten':
-            content = `<h2>Stempelkarten</h2><p>Hier finden Sie Informationen zu Stempelkarten...</p>`;
+            content = `
+                <h2>Stempelkarten</h2>
+                <p>Sammeln Sie Stempel bei jeder Bestellung und erhalten Sie exklusive Rabatte!</p>
+                <p>Aktueller Stempelstand: <span id="stamp-count">0</span> von 10</p>
+                <progress id="stamp-progress" value="0" max="10"></progress>
+            `;
             break;
         case 'agb':
-            content = `<h2>AGB</h2><p>Hier finden Sie unsere Allgemeinen Geschäftsbedingungen...</p>`;
+            content = `
+                <h2>Allgemeine Geschäftsbedingungen (AGB)</h2>
+                <p>Hier finden Sie unsere Allgemeinen Geschäftsbedingungen:</p>
+                <div class="legal-text">
+                    <!-- AGB-Inhalt -->
+                    <!-- Datenschutz -->
+                </div>
+            `;
             break;
         case 'datenschutz':
-            content = `<h2>Datenschutzerklärung</h2><p>Hier finden Sie unsere Datenschutzerklärung...</p>`;
+            content = `
+                <h2>Datenschutzerklärung</h2>
+                <p>Erfahren Sie, wie wir mit Ihren Daten umgehen:</p>
+                <div class="legal-text">
+                    <!-- Datenschutzerklärung-Inhalt -->
+                </div>
+            `;
             break;
         case 'impressum':
-            content = `<h2>Impressum</h2><p>Hier finden Sie unser Impressum...</p>`;
+            content = `
+                <h2>Impressum</h2>
+                <div class="legal-text">
+                    <!-- Impressum-Inhalt -->
+                    <p>BestellApp GmbH - Developer Akademie<br>
+                    Tassilopl. 25<br> 
+                    81541 München<br>
+                    Deutschland</p>
+                    <p><strong>Vertreten durch:</strong> Kay Weska</p>
+                    <p>Handelsregister: HRB 12345</p>
+                    <p>Umsatzsteuer-Identifikationsnummer: DE123456789</p>
+                    <p><strong>Kontakt:</strong><br>
+                    Telefon: 0815/08150815<br></p>
+                    E-Mail: 
+                    <a href='mailto:weskakay@gmail.com'>weskakay@gmail.com</a>
+                </div>
+            `;
             break;
         case 'cookies':
-            content = `<h2>Verwendung von Cookies</h2><p>Hier erfahren Sie mehr über unsere Verwendung von Cookies...</p>`;
+            content = `
+                <h2>Verwendung von Cookies</h2>
+                <p>Informationen über unsere Verwendung von Cookies:</p>
+                <div class="legal-text">
+                    <!-- Cookies-Informationen -->
+                </div>
+            `;
             break;
     }
 
@@ -357,26 +451,75 @@ function showPage(event, pageId) {
     // Initialisieren des Chatbots nur für die Kundenservice-Seite
     if (pageId === 'kundenservice') {
         initializeChatbot();
+    } else if (pageId === 'geschaeftEmpfehlen') {
+        initializeRecommendForm();
+    } else if (pageId === 'geschaeftAnmelden') {
+        initializeRegisterForm();
+    } else if (pageId === 'fahrerWerden') {
+        initializeDriverForm();
+    } else if (pageId === 'jobs') {
+        initializeJobApplications();
     }
     
     // Sicherstellen, dass die Seite unten bleibt
     pageContent.scrollIntoView({ behavior: 'smooth', block: 'end' });
 }
-
+// Chatbot
 function initializeChatbot() {
     const chatForm = document.getElementById('chat-form');
     const chatInput = document.getElementById('chat-input');
     const chatMessages = document.getElementById('chat-messages');
 
-    // Vordefinierte Antworten für die Demonstration
     const responses = {
         "bestellung": "Um Ihre Bestellung einzusehen, klicken Sie bitte auf 'Warenkorb'.",
+        "bestellungen": "Sie können Ihre aktuellen und vergangenen Bestellungen im 'Warenkorb' einsehen.",
         "hilfe": "Wie kann ich Ihnen helfen?",
-        "lieferzeit": "Die aktuelle Lieferzeit beträgt ca. 30 Minuten.",
+        "lieferzeit": "⏰ Die aktuelle Lieferzeit beträgt ca. 30 Minuten.",
+        "verspätung": "Wir entschuldigen uns für die Verzögerung. Ihre Bestellung wird so schnell wie möglich geliefert.",
+        "restaurant": "Um welches Restaurant handelt es sich?",
+        "italienisch": "Welche Informationen benötigen Sie zum italienischen Restaurant?",
+        "asiatisch": "Welche Informationen benötigen Sie zum asiatischen Restaurant?",
+        "fusion": "Welche Informationen benötigen Sie zum Fusion Restaurant?",
+        "öffnungszeiten": "Unsere Restaurants sind täglich von 11:00 bis 22:00 Uhr geöffnet.",
+        "adresse": "Unsere Adresse lautet: Musterstraße 123, 12345 Musterstadt.",
+        "kontakt": "Sie können uns unter der Telefonnummer 01234/567890 erreichen.",
+        "menü": "Unser Menü finden Sie oben auf der Seite oder direkt im jeweiligen Restaurantbereich.",
+        "allergien": "Bitte informieren Sie uns über Allergien oder Unverträglichkeiten, wir beraten Sie gerne.",
+        "vegetarisch": "🥗 Wir bieten eine Auswahl an vegetarischen Gerichten. Schauen Sie in unserem Menü nach der entsprechenden Kennzeichnung.",
+        "vegan": "🌱 Wir haben auch vegane Optionen. Im Menü sind diese entsprechend gekennzeichnet.",
+        "glutenfrei": "Glutenfreie Gerichte sind bei uns verfügbar. Bitte achten Sie auf die Kennzeichnung im Menü.",
+        "stornieren": "Möchten Sie Ihre Bestellung stornieren? Bitte geben Sie Ihre Bestellnummer an.",
+        "bezahlen": "💳 Wir akzeptieren Kreditkarte, PayPal und Barzahlung bei Lieferung.",
         "danke": "Gern geschehen! Wenn Sie weitere Fragen haben, bin ich für Sie da.",
-        "hallo": "Hallo! Wie kann ich Ihnen heute helfen?",
+        "hallo": "Hallo! Ich bin BestellBob, wie kann ich Ihnen heute helfen?",
+        "name": "Mein Name ist BestellBob, schön dich kennenzulernen!",
+        "speisekarte": "Unsere Speisekarte finden Sie oben unter 'Menü'.",
+        "zahlung": "Wir akzeptieren verschiedene Zahlungsmethoden, einschließlich Kreditkarte und PayPal.",
+        "feedback": "Wir freuen uns über Ihr Feedback! Bitte teilen Sie uns mit, wie wir uns verbessern können.",
+        "beschwerde": "Es tut uns leid, dass Sie unzufrieden sind. Bitte teilen Sie uns Ihr Anliegen mit, damit wir Ihnen helfen können.",
+        "filialen": "Wir haben mehrere Standorte. Finden Sie eine Filiale in Ihrer Nähe auf unserer Webseite.",
+        "liefergebiet": "Wir liefern in ganz Musterstadt und Umgebung. Geben Sie Ihre Postleitzahl ein, um die Verfügbarkeit zu prüfen.",
+        "rabatt": "🎉 Aktuell bieten wir einen 10% Rabatt auf alle Online-Bestellungen!",
+        "gutschein": "Sie können Gutscheine beim Bezahlvorgang einlösen.",
+        "später": "Sie können Ihre Bestellung auch für eine spätere Lieferung planen.",
+        "bestellstatus": "Um den Status Ihrer Bestellung zu prüfen, klicken Sie auf 'Meine Bestellungen' oder geben Sie Ihre Bestellnummer ein.",
+        "wie geht es dir": "Mir geht es gut, danke der Nachfrage! Wie kann ich Ihnen helfen?",
+        "wer bist du": "Ich bin BestellBob, Ihr virtueller Assistent für alle Fragen rund um Ihre Bestellung.",
+        "angebote": "Aktuelle Angebote finden Sie auf unserer Startseite oder unter 'Angebote'.",
+        "jobs": "Informationen zu offenen Stellen finden Sie im Bereich 'Jobs' unten auf der Seite.",
+        "fahrer": "Wenn Sie Interesse haben, als Fahrer*in zu arbeiten, besuchen Sie bitte den Bereich 'Fahrer*in werden'.",
+        "email": "Sie können uns auch per E-Mail unter service@bestellapp.de kontaktieren.",
         // Weitere Schlüsselwörter und Antworten können hinzugefügt werden
     };
+    responses["hi"] = responses["hallo"];
+    responses["bestellungen"] = responses["bestellung"];
+    responses["order"] = responses["bestellung"];
+    responses["support"] = responses["hilfe"];
+    responses["kontakt"] = responses["hilfe"];
+    responses["speisen"] = responses["speisekarte"];
+    responses["menü"] = responses["speisekarte"];
+    // Weitere Synonyme
+    
 
     chatForm.addEventListener('submit', function(event) {
         event.preventDefault();
@@ -395,27 +538,96 @@ function initializeChatbot() {
         // Eingabe leeren
         chatInput.value = '';
 
-        // Simulation der Bot-Antwort
-        setTimeout(() => {
-            const botMessageElement = document.createElement('div');
-            botMessageElement.classList.add('message', 'bot');
+        // Einfache Schlüsselwort-basierte Antwort
+        let botResponse = "Es tut mir leid, ich verstehe Ihre Anfrage nicht. Bitte versuchen Sie es anders zu formulieren.";
 
-            // Einfache Schlüsselwort-basierte Antwort
-            let botResponse = "Es tut mir leid, ich verstehe Ihre Anfrage nicht. Bitte versuchen Sie es anders zu formulieren.";
-            for (let keyword in responses) {
-                if (userMessage.toLowerCase().includes(keyword)) {
-                    botResponse = responses[keyword];
-                    break;
-                }
+        const userMessageWords = userMessage.toLowerCase().split(/\s+/);
+
+        for (let word of userMessageWords) {
+            if (responses.hasOwnProperty(word)) {
+                botResponse = responses[word];
+                break;
             }
+        }
 
-            botMessageElement.innerText = botResponse;
-            chatMessages.appendChild(botMessageElement);
+        // Anzeige der Bot-Antwort
+        const botMessageElement = document.createElement('div');
+        botMessageElement.classList.add('message', 'bot');
+        botMessageElement.innerText = botResponse;
+        chatMessages.appendChild(botMessageElement);
 
-            // Scrollen zum Ende
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }, 1000); // Simulierte Verzögerung
+        // Scrollen zum Ende
+        chatMessages.scrollTop = chatMessages.scrollHeight;
     });
+}
+// Geschäft empfehlen
+function initializeRecommendForm() {
+    const recommendForm = document.getElementById('recommend-form');
+    const recommendMessage = document.getElementById('recommend-message');
+
+    recommendForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        // Hier können Sie die Formulardaten verarbeiten und senden
+        recommendMessage.innerText = "Vielen Dank für Ihre Empfehlung! Wir werden das Geschäft prüfen.";
+        recommendForm.reset();
+    });
+}
+// Geschäft anmelden
+function initializeRegisterForm() {
+    const registerForm = document.getElementById('register-form');
+    const registerMessage = document.getElementById('register-message');
+
+    registerForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        // Hier können Sie die Formulardaten verarbeiten und senden
+        registerMessage.innerText = "Vielen Dank für Ihre Anmeldung! Wir werden uns in Kürze mit Ihnen in Verbindung setzen.";
+        registerForm.reset();
+    });
+}
+// Fahrer*in werden
+function initializeDriverForm() {
+    const driverForm = document.getElementById('driver-form');
+    const driverMessage = document.getElementById('driver-message');
+
+    driverForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        // Hier können Sie die Formulardaten verarbeiten und senden
+        driverMessage.innerText = "Vielen Dank für Ihre Bewerbung! Wir werden uns in Kürze bei Ihnen melden.";
+        driverForm.reset();
+    });
+}
+// Jobs
+function initializeJobApplications() {
+    const jobMessage = document.getElementById('job-message');
+
+    window.applyJob = function(position) {
+        const jobForm = `
+            <h3>Bewerbung für ${position}</h3>
+            <form id="job-application-form">
+                <label for="applicant-name">Ihr Name:</label>
+                <input type="text" id="applicant-name" name="applicant-name" required>
+                <label for="applicant-email">E-Mail:</label>
+                <input type="email" id="applicant-email" name="applicant-email" required>
+                <label for="applicant-phone">Telefonnummer:</label>
+                <input type="tel" id="applicant-phone" name="applicant-phone" required>
+                <label for="motivation">Warum möchten Sie bei uns arbeiten?</label>
+                <textarea id="motivation" name="motivation" required></textarea>
+                <button type="submit">Bewerbung absenden</button>
+            </form>
+            <div id="application-message"></div>
+        `;
+        jobMessage.innerHTML = jobForm;
+
+        const jobApplicationForm = document.getElementById('job-application-form');
+        const applicationMessage = document.getElementById('application-message');
+
+        jobApplicationForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            // Hier können Sie die Formulardaten verarbeiten und senden
+            applicationMessage.innerText = "Vielen Dank für Ihre Bewerbung! Wir werden uns in Kürze bei Ihnen melden.";
+            jobApplicationForm.reset();
+        });
+    }
 }
 
 
