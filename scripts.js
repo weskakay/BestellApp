@@ -378,14 +378,16 @@ function showPage(event, pageId) {
             break;
         case 'jobs':
             content = `
-                <h2>Jobs</h2>
-                <p>Entdecken Sie spannende Karrieremöglichkeiten bei uns:</p>
-                <ul>
-                    <li><strong>Kundenservice-Mitarbeiter*in</strong> - <a href="#" onclick="applyJob('kundenservice')">Jetzt bewerben</a></li>
-                    <li><strong>Marketing-Spezialist*in</strong> - <a href="#" onclick="applyJob('marketing')">Jetzt bewerben</a></li>
-                    <li><strong>Software-Entwickler*in</strong> - <a href="#" onclick="applyJob('entwicklung')">Jetzt bewerben</a></li>
-                </ul>
-                <div id="job-message"></div>
+                <div class="jobs-section">
+                    <h2>Jobs</h2>
+                    <p>Entdecken Sie spannende Karrieremöglichkeiten bei uns:</p>
+                    <ul>
+                        <li><strong>Kundenservice-Mitarbeiter*in</strong> - <a href="#" onclick="applyJob(event,'Kundenservice')">Jetzt bewerben</a></li>
+                        <li><strong>Marketing-Spezialist*in</strong> - <a href="#" onclick="applyJob(event,'Marketing')">Jetzt bewerben</a></li>
+                        <li><strong>Software-Entwickler*in</strong> - <a href="#" onclick="applyJob(event,'Entwicklung')">Jetzt bewerben</a></li>
+                    </ul>
+                    <div id="job-message"></div>
+                </div>
             `;
             break;
         case 'stempelkarten':
@@ -420,17 +422,39 @@ function showPage(event, pageId) {
                 <h2>Impressum</h2>
                 <div class="legal-text">
                     <!-- Impressum-Inhalt -->
-                    <p>BestellApp GmbH - Developer Akademie<br>
+                    <p><strong> BestellApp GmbH - Developer Akademie </strong><br>
                     Tassilopl. 25<br> 
                     81541 München<br>
                     Deutschland</p>
+
                     <p><strong>Vertreten durch:</strong> Kay Weska</p>
-                    <p>Handelsregister: HRB 12345</p>
-                    <p>Umsatzsteuer-Identifikationsnummer: DE123456789</p>
+                    <p><strong>Registereintrag:</strong><br>
+                        Eintragung im Handelsregister.<br>
+                        Registergericht: Amtsgericht Musterstadt<br>
+                        Registernummer: HRB 12345
+                    </p>
+
+                    <p><strong>Umsatzsteuer-ID:</strong><br>
+                        Umsatzsteuer-Identifikationsnummer gemäß §27 a Umsatzsteuergesetz: DE123456789
+                    </p>
+
+
                     <p><strong>Kontakt:</strong><br>
-                    Telefon: 0815/08150815<br></p>
-                    E-Mail: 
-                    <a href='mailto:weskakay@gmail.com'>weskakay@gmail.com</a>
+                        Telefon: 0815/08150815<br>
+                        E-Mail: <a href='mailto:weskakay@gmail.com'>info@bestellapp.com</a>
+                    </p>
+                    <p><strong>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:</strong><br>
+                        Kay Weska<br>
+                        Anschrift wie oben</p>
+
+                    <p><strong>Streitschlichtung</strong><br>
+                        Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr/">https://ec.europa.eu/consumers/odr/</a>.<br>
+                        Unsere E-Mail-Adresse finden Sie oben im Impressum.
+                    </p>
+
+                    <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+
+                    <p>Stand: Oktober 2024</p>
                 </div>
             `;
             break;
@@ -460,7 +484,6 @@ function showPage(event, pageId) {
     } else if (pageId === 'jobs') {
         initializeJobApplications();
     }
-    
     // Sicherstellen, dass die Seite unten bleibt
     pageContent.scrollIntoView({ behavior: 'smooth', block: 'end' });
 }
@@ -627,6 +650,8 @@ function initializeJobApplications() {
             applicationMessage.innerText = "Vielen Dank für Ihre Bewerbung! Wir werden uns in Kürze bei Ihnen melden.";
             jobApplicationForm.reset();
         });
+        // Sanftes Scrollen zum Formular
+        jobMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 }
 

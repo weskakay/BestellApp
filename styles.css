@@ -258,70 +258,83 @@ header {
     text-align: center; /* Zentriert den Text im Warenkorb */
 }
 
-footer {
-    background-color: #1A1A1A; /* Dunkles Grau für den Footer */
-    color: #E0E0E0; /* Hellgrauer Text */
-    padding: 20px;
-    text-align: center;
-    position: relative;
-}
+/*Footer*/
+    footer {
+        background-color: #1A1A1A; /* Dunkles Grau für den Footer */
+        color: #E0E0E0; /* Hellgrauer Text */
+        padding: 20px;
+        text-align: center;
+        position: relative;
+    }
 
-.footer-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+    .footer-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
-.footer-logo {
-    display: flex;
-    align-items: center;
-}
+    .follow-us a {
+        color: #00ffff; /* Türkis bzw. Neonblau */
+        text-decoration: none; /* Optional: Entfernt die Unterstreichung */
+    }
+    
+    .footer-content a:hover {
+        color: #00ffff; /* Optional: Farbe beim Hover-Effekt */
+        text-decoration: underline; /* Optional: Unterstreicht den Link beim Hover */
+    }
 
-.footer-logo-img {
-    width: 100px; /* Größere Größe für das Footer-Logo */
-    height: auto;
-    filter: invert(73%) sepia(44%) saturate(7426%) hue-rotate(163deg) brightness(150%) contrast(90%); /* Filter für helles Cyan */
-    transition: transform 0.3s;
-}
+    .footer-logo {
+        display: flex;
+        align-items: center;
+    }
 
-.footer-logo-img:hover {
-    transform: scale(1.1); /* Vergrößert das Footer-Logo beim Hover-Effekt */
-}
+    .footer-logo-img {
+        width: 100px; /* Größere Größe für das Footer-Logo */
+        height: auto;
+        filter: invert(73%) sepia(44%) saturate(7426%) hue-rotate(163deg) brightness(150%) contrast(90%); /* Filter für helles Cyan */
+        transition: transform 0.3s;
+    }
 
-.follow-us {
-    margin-top: 20px;
-}
+    .footer-logo-img:hover {
+        transform: scale(1.1); /* Vergrößert das Footer-Logo beim Hover-Effekt */
+    }
 
-.social-link {
-    color: #00FFFF; /* Cyan für Links */
-    margin: 0 10px;
-    text-decoration: none;
-}
+    .follow-us {
+        margin-top: 20px;
+    }
 
-.footer-links {
-    margin-top: 20px;
-    cursor: pointer;
-}
+    .social-link {
+        color: #00FFFF; /* Cyan für Links */
+        margin: 0 10px;
+        text-decoration: none;
+    }
 
-.footer-links-content {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 10px;
-}
+    .footer-links {
+        margin-top: 20px;
+        cursor: pointer;
+    }
 
-.footer-links-content a {
-    color: #E0E0E0;
-    margin: 5px 0;
-    text-decoration: none;
-}
+    .footer-links-content {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+    }
 
-.page-content {
-    display: none;
-    padding: 20px;
-    background-color: #2B2B2B;
-    color: #E0E0E0;
-}
+    .footer-links-content a {
+        color: #E0E0E0;
+        margin: 5px 0;
+        text-decoration: none;
+    }
+
+
+
+    .page-content {
+        display: none;
+        padding: 20px;
+        background-color: #2B2B2B;
+        color: #E0E0E0;
+    }
 
 
 /* Chat-Oberflächen-Stile */
@@ -438,7 +451,7 @@ footer {
     /* Nachrichten nach Formularübermittlung */
     #recommend-message, #register-message, #driver-message, #job-message, #application-message {
         text-align: center;
-        color: #00FF00;
+        color: #00ff22;
         margin-top: 20px;
     }
 
@@ -456,6 +469,28 @@ footer {
         text-align: left;
         line-height: 1.6;
         color: #E0E0E0;
+    }
+    .legal-text h3 {
+        margin-top: 20px;
+        color: #00FFFF;
+    }
+    .legal-text a {
+        color: #00FFFF; /* Türkis bzw. Neonblau */
+        text-decoration: underline; /* Optional: Unterstreicht die Links */
+    }
+    
+    .legal-text a:hover {
+        color: #009696; /* Optional: Andere Farbe beim Hover-Effekt */
+    }
+
+    /* Links im Jobs-Bereich anpassen */
+    .jobs-section a {
+        color: #00FFFF; /* Türkis bzw. Neonblau */
+        text-decoration: underline; /* Optional: Unterstreicht die Links */
+    }
+
+    .jobs-section a:hover {
+        color: #01acac; /* Etwas dunkleres Türkis beim Hover */
     }
 
 
