@@ -311,14 +311,15 @@ function showPage(event, pageId) {
         case 'kundenservice':
             content = `
                 <h2>Kundenservice</h2>
-                <form id="contact-form">
-                    <label for="email">E-Mail:</label>
-                    <input type="email" id="email" name="email" required>
-                    <label for="message">Nachricht:</label>
-                    <textarea id="message" name="message" required></textarea>
-                    <button type="submit">Absenden</button>
-                </form>
-                <div id="form-message"></div>
+                <div id="chat-container">
+                    <div id="chat-window">
+                        <div id="chat-messages"></div>
+                    </div>
+                    <form id="chat-form">
+                        <input type="text" id="chat-input" placeholder="Ihre Nachricht..." autocomplete="off" required>
+                        <button type="submit">Senden</button>
+                    </form>
+                </div>
             `;
             break;
         case 'geschaeftEmpfehlen':
@@ -352,16 +353,78 @@ function showPage(event, pageId) {
 
     pageContent.innerHTML = content;
     pageContent.style.display = 'block';
+
+    // Initialisieren des Chatbots nur für die Kundenservice-Seite
+    if (pageId === 'kundenservice') {
+        initializeChatbot();
+    }
     
     // Sicherstellen, dass die Seite unten bleibt
     pageContent.scrollIntoView({ behavior: 'smooth', block: 'end' });
 }
 
-document.getElementById('contact-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    document.getElementById('form-message').innerText = "Ein Ticket wurde eröffnet. Wir bearbeiten Ihr Anliegen.";
-    }
-);
+function initializeChatbot() {
+    const chatForm = document.getElementById('chat-form');
+    const chatInput = document.getElementById('chat-input');
+    const chatMessages = document.getElementById('chat-messages');
+
+    // Vordefinierte Antworten für die Demonstration
+    const responses = {
+        "bestellung": "Um Ihre Bestellung einzusehen, klicken Sie bitte auf 'Warenkorb'.",
+        "hilfe": "Wie kann ich Ihnen helfen?",
+        "lieferzeit": "Die aktuelle Lieferzeit beträgt ca. 30 Minuten.",
+        "danke": "Gern geschehen! Wenn Sie weitere Fragen haben, bin ich für Sie da.",
+        "hallo": "Hallo! Wie kann ich Ihnen heute helfen?",
+        // Weitere Schlüsselwörter und Antworten können hinzugefügt werden
+    };
+
+    chatForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const userMessage = chatInput.value.trim();
+        if (userMessage === '') return;
+
+        // Anzeige der Benutzer-Nachricht
+        const userMessageElement = document.createElement('div');
+        userMessageElement.classList.add('message', 'user');
+        userMessageElement.innerText = userMessage;
+        chatMessages.appendChild(userMessageElement);
+
+        // Scrollen zum Ende
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        // Eingabe leeren
+        chatInput.value = '';
+
+        // Simulation der Bot-Antwort
+        setTimeout(() => {
+            const botMessageElement = document.createElement('div');
+            botMessageElement.classList.add('message', 'bot');
+
+            // Einfache Schlüsselwort-basierte Antwort
+            let botResponse = "Es tut mir leid, ich verstehe Ihre Anfrage nicht. Bitte versuchen Sie es anders zu formulieren.";
+            for (let keyword in responses) {
+                if (userMessage.toLowerCase().includes(keyword)) {
+                    botResponse = responses[keyword];
+                    break;
+                }
+            }
+
+            botMessageElement.innerText = botResponse;
+            chatMessages.appendChild(botMessageElement);
+
+            // Scrollen zum Ende
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }, 1000); // Simulierte Verzögerung
+    });
+}
+
+
+// Entfernen oder auskommentieren Sie diesen Code
+// document.getElementById('contact-form').addEventListener('submit', function(event) {
+//     event.preventDefault();
+//     document.getElementById('form-message').innerText = "Ein Ticket wurde eröffnet. Wir bearbeiten Ihr Anliegen.";
+// });
+
 
 
 

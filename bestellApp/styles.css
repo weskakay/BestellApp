@@ -324,6 +324,83 @@ footer {
 }
 
 
+/* Chat-Oberflächen-Stile */
+    #chat-container {
+        width: 100%;
+        max-width: 600px;
+        margin: 20px auto;
+    }
+
+    #chat-window {
+        background-color: #3A3A3A;
+        border: 1px solid #00FFFF;
+        border-radius: 8px;
+        padding: 10px;
+        height: 400px;
+        overflow-y: auto;
+        margin-bottom: 10px;
+    }
+
+    #chat-messages {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .message {
+        margin-bottom: 10px;
+    }
+
+    .message.user {
+        align-self: flex-end;
+        background-color: #1A1A1A;
+        color: #E0E0E0;
+        padding: 8px;
+        border-radius: 8px;
+        max-width: 80%;
+    }
+
+    .message.bot {
+        align-self: flex-start;
+        background-color: #00FFFF;
+        color: #1A1A1A;
+        padding: 8px;
+        border-radius: 8px;
+        max-width: 80%;
+    }
+
+    #chat-form {
+        display: flex;
+    }
+
+    #chat-input {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #00FFFF;
+        border-radius: 5px 0 0 5px;
+        background-color: #2B2B2B;
+        color: #E0E0E0;
+    }
+
+    #chat-input::placeholder {
+        color: #666;
+    }
+
+    #chat-form button {
+        padding: 10px 20px;
+        border: none;
+        background-color: #00FFFF;
+        color: #1A1A1A;
+        cursor: pointer;
+        border-radius: 0 5px 5px 0;
+    }
+
+    #chat-form button:hover {
+        background-color: #01acac;
+    }
+
+
+    
+
 /* Layout für Bildschirme unter 900px */
 @media screen and (max-width: 900px) {
     .container {
