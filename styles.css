@@ -322,6 +322,7 @@ header {
     font-weight: bold; /* Fett für bessere Sichtbarkeit */
     margin-top: 10px; /* Abstand zum Bestell-Button */
     text-align: center; /* Zentriert den Text im Warenkorb */
+    font-size: 14px; /* Neue Schriftgröße hinzufügen oder anpassen */
 }
 
 /*Footer*/

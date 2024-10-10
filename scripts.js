@@ -166,6 +166,28 @@ function renderRestaurants() {
         restaurantSelection.appendChild(restaurantElement);
     });
 }
+
+function toggleDelivery(isDelivery) {
+    deliverySelected = isDelivery;
+
+    const deliveryBtn = document.getElementById('delivery-btn');
+    const pickupBtn = document.getElementById('pickup-btn');
+
+    if (isDelivery) {
+        // Lieferung wurde ausgewählt
+        deliveryBtn.classList.add('active'); // Füge die Klasse 'active' hinzu
+        pickupBtn.classList.remove('active'); // Entferne die Klasse 'active' vom Abholungsbutton
+    } else {
+        // Abholung wurde ausgewählt
+        deliveryBtn.classList.remove('active'); // Entferne die Klasse 'active' vom Lieferbutton
+        pickupBtn.classList.add('active'); // Füge die Klasse 'active' hinzu
+    }
+
+    // Aktualisieren Sie die Gesamtsumme, um die Änderung der Lieferkosten zu berücksichtigen
+    calculateTotal();
+}
+
+
 // This feature creates a visual representation of the star rating.
 function generateStarRating(rating) {
     const fullStars = Math.floor(rating);
@@ -244,6 +266,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 );
 
+function selectDelivery() {
+    toggleDelivery(true); // Standardmäßig Lieferung auswählen
+}
+
 function addToCart(restaurantKey, category, dishName, price) {
     console.log(`Gericht ${dishName} wird zum Warenkorb hinzugefügt.`);
     const existingItemIndex = cart.findIndex(item => item.name === dishName && item.restaurant === restaurantKey);
@@ -306,33 +332,37 @@ function calculateTotal() {
     const orderMessage = document.getElementById('order-message');
 
     if (deliverySelected) {
-        // Überprüfen, ob ein Restaurant ausgewählt ist
+        // Wenn Lieferung ausgewählt ist
         if (selectedRestaurant && restaurants[selectedRestaurant]) {
-            // Hole die Liefergebühr des ausgewählten Restaurants
+            // Lieferkosten vom ausgewählten Restaurant holen
             deliveryCost = restaurants[selectedRestaurant].deliveryPrice;
-            total += deliveryCost;
+            total += deliveryCost; // Lieferkosten zur Gesamtsumme hinzufügen
             document.getElementById('delivery-cost').innerText = `${deliveryCost.toFixed(2)} €`;
         } else {
-            // Falls kein Restaurant ausgewählt ist, setzen Sie die Lieferkosten auf 0
+            // Kein Restaurant ausgewählt
             document.getElementById('delivery-cost').innerText = `0,00 €`;
             orderMessage.innerText = "Bitte wählen Sie ein Restaurant aus.";
-            orderMessage.style.display = 'block'; // Zeigt die Nachricht an
+            orderMessage.style.display = 'block';
             orderBtn.disabled = true;
             orderBtn.classList.remove('active');
-            return; // Beenden Sie die Funktion, da kein gültiges Restaurant ausgewählt ist
+            return; // Beenden der Funktion
         }
     } else {
+        // Wenn Abholung ausgewählt ist
+        deliveryCost = 0; // Keine Lieferkosten
         document.getElementById('delivery-cost').innerText = `0,00 €`;
     }
 
+    // Aktualisieren der Anzeige für Zwischensumme und Gesamtsumme
     document.getElementById('subtotal').innerText = `${subtotal.toFixed(2)} €`;
     document.getElementById('total-cost').innerText = `${total.toFixed(2)} €`;
 
-    // Überprüfen Sie, ob der Mindestbestellwert erreicht ist
-    if (total < minOrderValue) {
+    // Überprüfen des Mindestbestellwerts basierend auf der Zwischensumme
+    if (subtotal < minOrderValue) {
         orderBtn.disabled = true;
         orderBtn.classList.remove('active');
-        orderMessage.innerText = `Der Mindestbestellwert beträgt ${minOrderValue.toFixed(2)} €.`;
+        const amountMissing = minOrderValue - subtotal;
+        orderMessage.innerText = `Der Mindestbestellwert beträgt ${minOrderValue.toFixed(2)} €. Ihnen fehlen noch ${amountMissing.toFixed(2)} €.`;
         orderMessage.style.display = 'block';
     } else {
         orderBtn.disabled = false;
