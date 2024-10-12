@@ -229,6 +229,8 @@ header {
     position: sticky;
     top: 20px;
     height: fit-content;
+    max-height: 80vh; /* Setzt die maximale Höhe auf 80% der Viewport-Höhe */
+    overflow-y: auto; /* Ermöglicht vertikales Scrollen */
 }
 
 /* Stil für Warenkorb-Elemente */
@@ -324,6 +326,17 @@ header {
     text-align: center; /* Zentriert den Text im Warenkorb */
     font-size: 14px; /* Neue Schriftgröße hinzufügen oder anpassen */
 }
+
+#order-confirmation {
+    background-color: #d4edda; /* Heller Grünton */
+    color: #155724; /* Dunkler Grünton für den Text */
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #c3e6cb; /* Passender Rand */
+    border-radius: 5px;
+    text-align: center;
+}
+
 
 /*Footer*/
     footer {

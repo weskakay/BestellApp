@@ -374,11 +374,41 @@ function calculateTotal() {
 
 
 function placeOrder() {
-    alert("Danke für Ihre Bestellung! Ihre Bestellung wird bearbeitet.");
+    // Leeren des Warenkorbs
     cart = [];
     renderCart();
     calculateTotal();
+
+    // Prüfen, ob die Bestätigungsmeldung bereits existiert
+    let orderConfirmation = document.getElementById('order-confirmation');
+    if (!orderConfirmation) {
+        orderConfirmation = document.createElement('div');
+        orderConfirmation.id = 'order-confirmation';
+        orderConfirmation.style.color = '#155724';
+        orderConfirmation.style.backgroundColor = '#d4edda';
+        orderConfirmation.style.border = '1px solid #c3e6cb';
+        orderConfirmation.style.padding = '15px';
+        orderConfirmation.style.margin = '20px auto';
+        orderConfirmation.style.borderRadius = '5px';
+        orderConfirmation.style.maxWidth = '600px';
+        orderConfirmation.style.textAlign = 'center';
+    }
+
+    orderConfirmation.innerText = "Danke für Ihre Bestellung! Ihre Bestellung wird bearbeitet.";
+
+    // Fügen Sie die Bestätigungsmeldung direkt unterhalb des Headers ein
+    const header = document.querySelector('header');
+    header.after(orderConfirmation);
+
+    // Scrollen Sie zur Bestätigungsmeldung
+    orderConfirmation.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    // Optional: Ausblenden der Nachricht nach einigen Sekunden
+    setTimeout(() => {
+        orderConfirmation.remove();
+    }, 5000);
 }
+
 
 function toggleFooterLinks() {
     const footerLinksContent = document.getElementById('footer-links-content');
