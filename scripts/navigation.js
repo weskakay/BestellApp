@@ -515,6 +515,10 @@ function initializeJobApplications() {
   const jobMessage = document.getElementById('job-message');
 
   window.applyJob = function(event, position) {
+    event.preventDefault(); // Verhindert das Standardverhalten des Links
+
+    const jobMessage = document.getElementById('job-message');
+
       const jobForm = `
           <h3>Bewerbung für ${position}</h3>
           <form id="job-application-form">
@@ -530,11 +534,12 @@ function initializeJobApplications() {
           </form>
           <div id="application-message"></div>
       `;
+      // Formular wird in den DOM eingefügt
       jobMessage.innerHTML = jobForm;
-
+      // Zugriff auf das neu hinzugefügte Formular
       const jobApplicationForm = document.getElementById('job-application-form');
       const applicationMessage = document.getElementById('application-message');
-
+      // Eventlistener für das Absenden des Formulars
       jobApplicationForm.addEventListener('submit', function(event) {
           event.preventDefault();
           // Hier können Sie die Formulardaten verarbeiten und senden
@@ -544,9 +549,4 @@ function initializeJobApplications() {
       // Sanftes Scrollen zum Formular
       jobMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
-}
-
-// Globale Funktion für Job-Bewerbungen
-window.applyJob = function(position) {
-  // ... Ihr bestehender Code für die Funktion applyJob
 }
