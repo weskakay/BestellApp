@@ -3,6 +3,7 @@
 // Mindestbestellwert und Lieferoption
 const minOrderValue = 10;
 let deliverySelected = true; // Standardmäßig auf Lieferung gesetzt
+let orderPlaced = false; // Neues Flag, um den Status der Bestellung zu verfolgen
 
 // Funktion zum Umschalten zwischen Lieferung und Abholung
 function toggleDelivery(isDelivery) {
@@ -27,12 +28,16 @@ function toggleDelivery(isDelivery) {
 
 // Funktion zum Platzieren einer Bestellung
 function placeOrder() {
-    // Leeren des Warenkorbs
-    cart = [];
-    renderCart();
-    calculateTotal();
+    if (cart.length === 0 || document.getElementById('order-btn').disabled) {
+        return; // Verhindert das Platzieren der Bestellung, wenn der Warenkorb leer oder der Button deaktiviert ist
+    }
 
-    // Prüfen, ob die Bestätigungsmeldung bereits existiert
+    orderPlaced = true; // Setzt das Flag nach der Bestellung auf true
+    cart = []; // Leeren des Warenkorbs
+    renderCart();
+    calculateTotal(); // Berechne die Gesamtsumme neu
+
+    // Zeigt die Bestellbestätigung an
     let orderConfirmation = document.getElementById('order-confirmation');
     if (!orderConfirmation) {
         orderConfirmation = document.createElement('div');
@@ -47,17 +52,18 @@ function placeOrder() {
         orderConfirmation.style.textAlign = 'center';
     }
 
-    orderConfirmation.innerText = "Danke für Ihre Bestellung! Ihre Bestellung wird bearbeitet.";
-
-    // Fügen Sie die Bestätigungsmeldung direkt unterhalb des Headers ein
+    orderConfirmation.innerHTML = "Danke für Ihre Bestellung! Ihre Bestellung wird bearbeitet.<br>Sie können in wenigen Momenten eine neue Bestellung aufgeben.";
     const header = document.querySelector('header');
     header.after(orderConfirmation);
-
-    // Scrollen Sie zur Bestätigungsmeldung
     orderConfirmation.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
     // Optional: Ausblenden der Nachricht nach einigen Sekunden
     setTimeout(() => {
         orderConfirmation.remove();
-    }, 5000);
+        orderPlaced = false; // Setze das Flag wieder zurück, um zukünftige Bestellungen zu ermöglichen
+        // Seite neu laden, um alles zurückzusetzen
+        location.reload(); // Lädt die Seite neu
+    }, 4000);// Warte 4 Sekunden, bevor die Seite neu geladen wird
 }
+
+

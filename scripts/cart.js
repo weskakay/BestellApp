@@ -76,25 +76,29 @@ function calculateTotal() {
     const orderBtn = document.getElementById('order-btn');
     const orderMessage = document.getElementById('order-message');
 
+    // Wenn kein Restaurant ausgewählt ist
+    if (!selectedRestaurant) {
+        document.getElementById('delivery-cost').innerText = `0,00 €`;
+        orderMessage.innerText = "Bitte wählen Sie ein Restaurant aus.";
+        orderMessage.style.display = 'block';
+        orderBtn.disabled = true;
+        orderBtn.classList.remove('active');
+        return; // Beenden der Funktion, wenn kein Restaurant ausgewählt ist
+    }
+
+    // Wenn Lieferung ausgewählt ist
     if (deliverySelected) {
-        // Wenn Lieferung ausgewählt ist
-        if (selectedRestaurant && restaurants[selectedRestaurant]) {
+        if (restaurants[selectedRestaurant]) {
             // Lieferkosten vom ausgewählten Restaurant holen
             deliveryCost = restaurants[selectedRestaurant].deliveryPrice;
             total += deliveryCost; // Lieferkosten zur Gesamtsumme hinzufügen
             document.getElementById('delivery-cost').innerText = `${deliveryCost.toFixed(2)} €`;
         } else {
-            // Kein Restaurant ausgewählt
             document.getElementById('delivery-cost').innerText = `0,00 €`;
-            orderMessage.innerText = "Bitte wählen Sie ein Restaurant aus.";
-            orderMessage.style.display = 'block';
-            orderBtn.disabled = true;
-            orderBtn.classList.remove('active');
-            return; // Beenden der Funktion
         }
     } else {
         // Wenn Abholung ausgewählt ist
-        deliveryCost = 0; // Keine Lieferkosten
+        deliveryCost = 0; // Keine Lieferkosten bei Abholung
         document.getElementById('delivery-cost').innerText = `0,00 €`;
     }
 
@@ -102,17 +106,20 @@ function calculateTotal() {
     document.getElementById('subtotal').innerText = `${subtotal.toFixed(2)} €`;
     document.getElementById('total-cost').innerText = `${total.toFixed(2)} €`;
 
-    // Überprüfen des Mindestbestellwerts basierend auf der Zwischensumme
-    if (subtotal < minOrderValue) {
-        orderBtn.disabled = true;
-        orderBtn.classList.remove('active');
+    // Überprüfen des Mindestbestellwerts basierend auf der Zwischensumme, nur wenn noch keine Bestellung aufgegeben wurde
+    if (!orderPlaced && subtotal < minOrderValue) {
         const amountMissing = minOrderValue - subtotal;
         orderMessage.innerText = `Der Mindestbestellwert beträgt ${minOrderValue.toFixed(2)} €. Ihnen fehlen noch ${amountMissing.toFixed(2)} €.`;
         orderMessage.style.display = 'block';
-    } else {
+        orderBtn.disabled = true;
+        orderBtn.classList.remove('active');
+    } else if (!orderPlaced) {
+        // Alles erfüllt, Bestellung kann aufgegeben werden
         orderBtn.disabled = false;
         orderBtn.classList.add('active');
         orderMessage.innerText = "";
         orderMessage.style.display = 'none';
     }
 }
+
+
