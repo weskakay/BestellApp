@@ -1,5 +1,14 @@
 // navigation.js
 
+
+// Function to scroll to the top of the page smoothly
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth' // Enables smooth scrolling
+    });
+}
+
 // Function to toggle the footer links
 function toggleFooterLinks() {
   const footerLinksContent = document.getElementById('footer-links-content');

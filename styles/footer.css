@@ -16,13 +16,33 @@ footer {
     align-items: center;
 }
 
+/* Social media icons styling */
 .follow-us a {
-    color: var(--primary-color);
-    text-decoration: none;
+    text-decoration: none; /* No underline for social media links */
 }
 
-.footer-content a:hover {
-    text-decoration: underline;
+/* Adjust icon styling to not change color and only scale on hover */
+.social-link img {
+    width: 40px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.social-link img:hover {
+    transform: scale(1.2); /* Increase size on hover */
+}
+
+/* Links in the footer (not social icons) should change color and be underlined on hover */
+.footer-links-content a {
+    color: var(--text-color); /* Default text color */
+    margin: 5px 0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links-content a:hover {
+    color: var(--primary-color); /* Change to cyan on hover */
+    text-decoration: underline; /* Underline on hover */
 }
 
 .footer-logo {
@@ -38,7 +58,7 @@ footer {
 }
 
 .footer-logo-img:hover {
-    transform: scale(1.1);
+    transform: scale(1.1); /* Logo enlarges on hover */
 }
 
 .follow-us {
@@ -46,9 +66,28 @@ footer {
 }
 
 .social-link {
-    color: var(--primary-color);
     margin: 0 10px;
-    text-decoration: none;
+    text-decoration: none; /* No underline for social icons */
+}
+
+/* Social media icons styling */
+.social-icons a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin: 0 10px;
+}
+
+.social-icons img {
+    width: 100%; /* Set the width to 100% of the parent container */
+    height: 100%; /* Set the height to 100% to maintain aspect ratio */
+    object-fit: contain; /* Ensure the image fits within the bounds without distortion */
+    transition: transform 0.3s ease;
+}
+
+/* Hover effect: only enlarge the icon */
+.social-icons img:hover {
+    transform: scale(1.2);
 }
 
 .footer-links {
@@ -63,8 +102,3 @@ footer {
     margin-top: 10px;
 }
 
-.footer-links-content a {
-    color: var(--text-color);
-    margin: 5px 0;
-    text-decoration: none;
-}

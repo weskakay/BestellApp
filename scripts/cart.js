@@ -79,7 +79,7 @@ function calculateTotal() {
     // If no restaurant is selected
     if (!selectedRestaurant) {
         document.getElementById('delivery-cost').innerText = `0.00 €`;
-        orderMessage.innerText = "Please select a restaurant.";
+        orderMessage.innerText = "Bitte wählen Sie ein Restaurant aus";
         orderMessage.style.display = 'block';
         orderBtn.disabled = true;
         orderBtn.classList.remove('active');
@@ -109,7 +109,7 @@ function calculateTotal() {
     // Check if the minimum order value is met, only if no order has been placed yet
     if (!orderPlaced && subtotal < minOrderValue) {
         const amountMissing = minOrderValue - subtotal;
-        orderMessage.innerText = `The minimum order value is ${minOrderValue.toFixed(2)} €. You still need ${amountMissing.toFixed(2)} € to complete the order.`;
+        orderMessage.innerText = `Der Mindestbestellwert beträgt ${minOrderValue.toFixed(2)} €. Sie benötigen noch ${amountMissing.toFixed(2)} € für eine Bestellung.`;
         orderMessage.style.display = 'block';
         orderBtn.disabled = true;
         orderBtn.classList.remove('active');

@@ -52,7 +52,7 @@ function placeOrder() {
         orderConfirmation.style.textAlign = 'center';
     }
 
-    orderConfirmation.innerHTML = "Thank you for your order! Your order is being processed.<br>You can place a new order in a few moments.";
+    orderConfirmation.innerHTML = "Danke für Ihre Bestellung! Ihre Bestellung wird bearbeitet.<br>In wenigen Momenten können Sie eine neue Bestellung aufgeben.";
     const header = document.querySelector('header');
     header.after(orderConfirmation);
     orderConfirmation.scrollIntoView({ behavior: 'smooth', block: 'start' });
