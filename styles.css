@@ -1,16 +1,42 @@
+/* ============================= */
+/*        Hauptfarben Variablen   */
+/* ============================= */
+
+:root {
+    --background-color: #2B2B2B; /* Carbon Grau Hintergrund */
+    --text-color: #E0E0E0; /* Hellgrauer Text für gute Lesbarkeit */
+    --primary-color: #00FFFF; /* Cyan Hauptfarbe */
+    --secondary-color: #1A1A1A; /* Dunkleres Grau für Header und Footer */
+    --mid-bg-color: #3A3A3A; /* Mittleres Grau für verschiedene Container */
+    --highlight-color: #01acac; /* Leicht dunkleres Cyan für Hover-Effekte */
+    --warning-color: #FF0000; /* Rot für Warnungen */
+    --success-bg-color: #d4edda; /* Heller Grünton */
+    --success-text-color: #155724; /* Dunkler Grünton für Text in Bestätigungsmeldungen */
+    --border-color: #c3e6cb; /* Randfarbe für Bestätigungsmeldungen */
+    --star-color: #FFD700; /* Goldene Farbe für Sterne */
+}
+
+/* ============================= */
+/*        Allgemeine Stile        */
+/* ============================= */
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #2B2B2B; /* Carbon Grau Hintergrund */
-    color: #E0E0E0; /* Hellgrauer Text für gute Lesbarkeit */
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
+/* ============================= */
+/*            Header              */
+/* ============================= */
+
 header {
-    background-color: #1A1A1A; /* Dunkleres Grau für den Header */
-    color: #00FFFF; /* Cyan Textfarbe */
-    padding: 20px; /* Größeres Padding für den Header */
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    padding: 20px;
     text-align: center;
     position: relative;
 }
@@ -23,22 +49,26 @@ header {
 }
 
 .restaurant-logo {
-    width: 300px; /* Größe des Logos anpassen */
+    width: 300px;
     height: auto;
-    border: 5px solid transparent; /* Umrandung */
-    border-radius: 10px; /* Abgerundete Ecken für Logo-Umrandung */
-    box-shadow: 0 0 15px 5px #00FFFF, /* Leichte Cyan Umrandung */
-                0 0 30px 10px #00FFFF, /* Mittlere Cyan Umrandung */
-                0 0 45px 15px #00FFFF; /* Stärkere Cyan Umrandung */
-    transition: transform 0.3s, box-shadow 0.3s; /* Animationseffekte hinzufügen */
+    border: 5px solid transparent;
+    border-radius: 10px;
+    box-shadow: 0 0 15px 5px var(--primary-color),
+                0 0 30px 10px var(--primary-color),
+                0 0 45px 15px var(--primary-color);
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .restaurant-logo:hover {
-    transform: scale(1.1); /* Vergrößert das Logo beim Hover-Effekt */
-    box-shadow: 0 0 25px 10px #00FFFF, /* Intensivere Cyan Umrandung beim Hover */
-                0 0 50px 20px #00FFFF, 
-                0 0 75px 30px #00FFFF;
+    transform: scale(1.1);
+    box-shadow: 0 0 25px 10px var(--primary-color),
+                0 0 50px 20px var(--primary-color),
+                0 0 75px 30px var(--primary-color);
 }
+
+/* ============================= */
+/*            Container           */
+/* ============================= */
 
 .container {
     display: flex;
@@ -48,46 +78,49 @@ header {
 .menu-container {
     flex: 3;
     padding: 10px;
-    background-color: #3A3A3A; /* Mittleres Grau für Menübereich */
+    background-color: var(--mid-bg-color);
     border-radius: 8px;
     margin-right: 10px;
 }
 
+/* ============================= */
+/*       Restaurant-Bereich       */
+/* ============================= */
+
 .restaurant-selection {
     margin-bottom: 20px;
-    text-align: center; /* Zentriert den Inhalt */
-    
+    text-align: center;
 }
 
 .restaurant {
-    background-color: #2B2B2B;
+    background-color: var(--background-color);
     padding: 10px;
     margin: 10px 0;
     border-radius: 8px;
     cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s, border 0.3s; /* Übergangseffekte hinzufügen */
-    border: 2px solid transparent; /* Standardmäßig transparenten Rand festlegen */
+    transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
+    border: 2px solid transparent;
 }
 
 .restaurant img {
-    width: 100%; /* Bild füllt die Breite des Containers aus */
-    max-width: 750px; /* Maximale Breite des Bildes */
-    height: auto; /* Höhe wird automatisch angepasst, um das Seitenverhältnis beizubehalten */
-    border-radius: 8px; /* Abgerundete Ecken */
-    object-fit: cover; /* Schneidet das Bild, um das Seitenverhältnis zu füllen */
-    transition: transform 0.3s; /* Übergangseffekte hinzufügen */
+    width: 100%;
+    max-width: 750px;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    transition: transform 0.3s;
 }
 
 /* Hover-Effekt für das gesamte Restaurant-Element */
 .restaurant:hover {
-    transform: scale(1.05); /* Vergrößert das Restaurant leicht beim Hover */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Fügt einen leichten Schatten hinzu */
-    border: 2px solid #00FFFF; /* Cyanfarbener Rand beim Hover */
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: 2px solid var(--primary-color);
 }
 
 /* Optional: Hover-Effekt nur für das Bild */
 .restaurant img:hover {
-    transform: scale(1.1); /* Vergrößert das Bild leicht beim Hover */
+    transform: scale(1.1);
 }
 
 /* Stil für Restaurantinformationen */
@@ -98,35 +131,30 @@ header {
 .restaurant-info h3 {
     margin-top: 10px;
     margin-bottom: 5px;
-    color: #E0E0E0; /* Standardfarbe des Namens */
-    transition: color 0.3s; /* Übergang für die Farbänderung */
+    color: var(--text-color);
+    transition: color 0.3s;
 }
-/* Hover-Effekt für den Restaurantnamen, wenn das Restaurant gehovered wird */
+
+/* Hover-Effekt für den Restaurantnamen */
 .restaurant:hover .restaurant-info h3 {
-    color: #00FFFF; /* Neonblau für den Hover-Zustand */
+    color: var(--primary-color);
 }
 
 .restaurant-info p {
     margin: 5px 0;
 }
 
-/* Spezifische Stile für die Beschreibung */
 .restaurant-info .restaurant-description {
-    margin-bottom: 10px; /* Fügt zusätzlichen Abstand unter der Beschreibung hinzu */
-    color: #E0E0E0; /* Standardfarbe */
-}
-
-/* Spezifische Stile für die Lieferkosten */
-.restaurant-info .restaurant-delivery {
-    margin-top: 10px; /* Fügt zusätzlichen Abstand über den Lieferkosten hinzu */
-    font-weight: bold; /* Hebt die Lieferkosten hervor */
-    color: #00FFFF; /* Neonblau für Lieferkosten */
-}
-
-/* Optional: Anpassung des Abstands zwischen Bewertung und Beschreibung */
-.restaurant-info .restaurant-rating {
     margin-bottom: 10px;
+    color: var(--text-color);
 }
+
+.restaurant-info .restaurant-delivery {
+    margin-top: 10px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
 .restaurant-rating {
     display: flex;
     align-items: center;
@@ -135,7 +163,7 @@ header {
 
 .star {
     font-size: 20px;
-    color: #FFD700; /* Goldene Farbe für Sterne */
+    color: var(--star-color);
     margin-right: 2px;
 }
 
@@ -149,129 +177,131 @@ header {
     left: 0;
     width: 50%;
     overflow: hidden;
-    color: #FFD700;
+    color: var(--star-color);
 }
 
 .star.empty {
-    color: #555; /* Gedämpfte Farbe für leere Sterne */
+    color: #555;
 }
 
-/* Stil für Speisenkategorien */
+/* ============================= */
+/*        Speisen-Bereich         */
+/* ============================= */
+
 .dish-category {
-    margin-bottom: 20px; /* Abstand zwischen den Kategorien */
+    margin-bottom: 20px;
 }
 
 .dish-category h4 {
-    margin-bottom: 10px; /* Abstand zwischen der Kategorieüberschrift und den Speisen */
+    margin-bottom: 10px;
 }
 
-/* Flexbox-Stil für Speisen */
 .dish-items {
-    display: flex; /* Flexbox verwenden */
-    justify-content: space-between; /* Platz zwischen den Speisen gleichmäßig verteilen */
-    gap: 10px; /* Abstand zwischen den Speisen */
-    flex-wrap: wrap; /* Speisen umbrechen, falls nötig */
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 .dish-item {
-    background-color: #2B2B2B; /* Hintergrundfarbe für Speisen */
-    border-radius: 8px; /* Abgerundete Ecken */
+    background-color: var(--background-color);
+    border-radius: 8px;
     padding: 10px;
-    flex: 1 1 calc(33.333% - 10px); /* Jede Speise nimmt ein Drittel der Zeile ein, abzüglich der Lücken */
-    text-align: center; /* Zentrierter Text */
-    box-sizing: border-box; /* Einschließen von Padding und Rand in der Breite */
+    flex: 1 1 calc(33.333% - 10px);
+    text-align: center;
+    box-sizing: border-box;
 }
 
 .dish-item img {
-    width: 100%; /* Bild füllt die Breite des Containers aus */
-    height: 150px; /* Einheitliche Höhe für alle Bilder */
-    object-fit: cover; /* Schneidet das Bild zu, um das Seitenverhältnis zu erhalten */
-    border-radius: 8px; /* Abgerundete Ecken für Bilder */
-    margin-bottom: 10px; /* Abstand zwischen Bild und Speisenname */
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
 }
 
-/* Stil für Speisenname und Steuerungselemente */
 .dish-item span {
-    display: block; /* Block-Element für den Namen */
-    margin-bottom: 5px; /* Abstand zwischen Name und Steuerungselementen */
+    display: block;
+    margin-bottom: 5px;
 }
 
-/* Hover-Effekt für Speisen */
 .dish-item:hover {
-    transform: scale(1.05); /* Leichte Vergrößerung beim Hover */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Leichter Schatten beim Hover */
-    border: 2px solid #00FFFF; /* Cyanfarbener Rand beim Hover */
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border: 2px solid var(--primary-color);
 }
 
 .dish-item button {
-    background-color: #1A1A1A; /* Dunkles Grau für die Buttons */
+    background-color: var(--secondary-color);
     color: white;
     border: none;
     padding: 5px 10px;
     border-radius: 3px;
     cursor: pointer;
-    margin-top: 5px; /* Abstand über den Buttons */
+    margin-top: 5px;
 }
 
 .dish-item button:hover {
-    background-color: #01acac; /* Hover-Farbe für die Buttons */
+    background-color: var(--highlight-color);
 }
 
-/* Warenkorb-Elemente */
+/* ============================= */
+/*         Warenkorb-Bereich      */
+/* ============================= */
+
 .cart-container {
     flex: 1;
     padding: 10px;
-    background-color: #3A3A3A; /* Gleiches mittleres Grau für Warenkorb */
-    border-left: 2px solid #00FFFF; /* Cyan Linie zur Trennung */
-    border-right: 2px solid #00FFFF; /* Cyan Linie zur Trennung rechts */
+    background-color: var(--mid-bg-color);
+    border-left: 2px solid var(--primary-color);
+    border-right: 2px solid var(--primary-color);
     border-radius: 8px;
     position: -webkit-sticky;
     position: sticky;
     top: 20px;
     height: fit-content;
-    max-height: 80vh; /* Setzt die maximale Höhe auf 80% der Viewport-Höhe */
-    overflow-y: auto; /* Ermöglicht vertikales Scrollen */
+    max-height: 80vh;
+    overflow-y: auto;
 }
 
-/* Stil für Warenkorb-Elemente */
 .cart-item {
-    display: flex; /* Flexbox verwenden */
-    align-items: center; /* Zentriert die Items vertikal */
-    justify-content: space-between; /* Platz zwischen den Elementen gleichmäßig verteilen */
-    margin-bottom: 10px; /* Abstand zwischen den Warenkorb-Einträgen */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
     padding: 10px;
-    background-color: #3A3A3A; /* Hintergrundfarbe für die Warenkorb-Einträge */
-    border-radius: 5px; /* Abgerundete Ecken */
+    background-color: var(--mid-bg-color);
+    border-radius: 5px;
 }
 
 .cart-item-quantity {
-    color: #00FFFF; /* Cyan für die Anzahl der Speisen */
-    font-weight: bold; /* Fett für bessere Sichtbarkeit */
-    margin-right: 10px; /* Abstand zum Speisenname */
+    color: var(--primary-color);
+    font-weight: bold;
+    margin-right: 10px;
 }
 
 .cart-item-name {
-    flex-grow: 1; /* Nimmt den verbleibenden Platz ein */
-    text-align: left; /* Linksbündige Ausrichtung des Speisennamens */
+    flex-grow: 1;
+    text-align: left;
 }
 
 .cart-item-controls {
-    display: flex; /* Flexbox für die Kontrollbuttons */
-    align-items: center; /* Zentriert die Buttons vertikal */
+    display: flex;
+    align-items: center;
 }
 
 .cart-item-controls button {
-    background-color: #1A1A1A; /* Dunkles Grau für die Buttons */
+    background-color: var(--secondary-color);
     color: white;
     border: none;
     padding: 5px;
-    margin: 0 5px; /* Abstand zwischen den Buttons */
+    margin: 0 5px;
     border-radius: 3px;
     cursor: pointer;
 }
 
 .cart-item-controls button:hover {
-    background-color: #00FFFF; /* Hover-Farbe für die Buttons */
+    background-color: var(--primary-color);
 }
 
 .delivery-toggle {
@@ -281,366 +311,368 @@ header {
 }
 
 .toggle-btn {
-    background-color: grey; /* Standardfarbe für beide Buttons */
+    background-color: grey;
     color: white;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
-    transition: background-color 0.3s; /* Smooth transition */
+    transition: background-color 0.3s;
     flex: 1;
-    margin: 0 5px; /* Abstand zwischen den Buttons */
-    border-radius: 5px; /* Abgerundete Ecken */
+    margin: 0 5px;
+    border-radius: 5px;
 }
 
 .toggle-btn.active {
-    background-color: #00FFFF; /* Cyan Farbe für den aktiven Button */
+    background-color: var(--primary-color);
 }
 
 .toggle-btn:not(.active) {
-    background-color: #666; /* Grau für inaktiven Button */
+    background-color: #666;
     cursor: pointer;
 }
 
-/* Standardstil für den Bestell-Button */
 #order-btn {
-    background-color: grey; /* Standardfarbe */
+    background-color: grey;
     color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    cursor: not-allowed; /* Zeigt an, dass der Button nicht anklickbar ist */
-    transition: background-color 0.3s; /* Smooth transition */
+    cursor: not-allowed;
+    transition: background-color 0.3s;
 }
 
-/* Aktiver Stil für den Bestell-Button, wenn die Mindestbestellung erreicht ist */
 #order-btn.active {
-    background-color: #00FFFF; /* Cyan */
-    cursor: pointer; /* Zeigt an, dass der Button anklickbar ist */
+    background-color: var(--primary-color);
+    cursor: pointer;
 }
 
-/* Warenkorb Nachrichtentext */
 #order-message {
-    color: #FF0000; /* Farbe für Warnungen, z.B. rot */
-    font-weight: bold; /* Fett für bessere Sichtbarkeit */
-    margin-top: 10px; /* Abstand zum Bestell-Button */
-    text-align: center; /* Zentriert den Text im Warenkorb */
-    font-size: 14px; /* Neue Schriftgröße hinzufügen oder anpassen */
+    color: var(--warning-color);
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 14px;
 }
 
 #order-confirmation {
-    background-color: #d4edda; /* Heller Grünton */
-    color: #155724; /* Dunkler Grünton für den Text */
+    background-color: var(--success-bg-color);
+    color: var(--success-text-color);
     padding: 15px;
     margin-bottom: 20px;
-    border: 1px solid #c3e6cb; /* Passender Rand */
+    border: 1px solid var(--border-color);
     border-radius: 5px;
     text-align: center;
 }
 
+/* ============================= */
+/*             Footer             */
+/* ============================= */
 
-/*Footer*/
-    footer {
-        background-color: #1A1A1A; /* Dunkles Grau für den Footer */
-        color: #E0E0E0; /* Hellgrauer Text */
-        padding: 20px;
-        text-align: center;
-        position: relative;
-    }
+footer {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
 
-    .footer-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-    .follow-us a {
-        color: #00ffff; /* Türkis bzw. Neonblau */
-        text-decoration: none; /* Optional: Entfernt die Unterstreichung */
-    }
-    
-    .footer-content a:hover {
-        color: #00ffff; /* Optional: Farbe beim Hover-Effekt */
-        text-decoration: underline; /* Optional: Unterstreicht den Link beim Hover */
-    }
+.follow-us a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
 
-    .footer-logo {
-        display: flex;
-        align-items: center;
-    }
+.footer-content a:hover {
+    text-decoration: underline;
+}
 
-    .footer-logo-img {
-        width: 100px; /* Größere Größe für das Footer-Logo */
-        height: auto;
-        filter: invert(73%) sepia(44%) saturate(7426%) hue-rotate(163deg) brightness(150%) contrast(90%); /* Filter für helles Cyan */
-        transition: transform 0.3s;
-    }
+.footer-logo {
+    display: flex;
+    align-items: center;
+}
 
-    .footer-logo-img:hover {
-        transform: scale(1.1); /* Vergrößert das Footer-Logo beim Hover-Effekt */
-    }
+.footer-logo-img {
+    width: 100px;
+    height: auto;
+    filter: invert(73%) sepia(44%) saturate(7426%) hue-rotate(163deg) brightness(150%) contrast(90%);
+    transition: transform 0.3s;
+}
 
-    .follow-us {
-        margin-top: 20px;
-    }
+.footer-logo-img:hover {
+    transform: scale(1.1);
+}
 
-    .social-link {
-        color: #00FFFF; /* Cyan für Links */
-        margin: 0 10px;
-        text-decoration: none;
-    }
+.follow-us {
+    margin-top: 20px;
+}
 
-    .footer-links {
-        margin-top: 20px;
-        cursor: pointer;
-    }
+.social-link {
+    color: var(--primary-color);
+    margin: 0 10px;
+    text-decoration: none;
+}
 
-    .footer-links-content {
-        display: none;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 10px;
-    }
+.footer-links {
+    margin-top: 20px;
+    cursor: pointer;
+}
 
-    .footer-links-content a {
-        color: #E0E0E0;
-        margin: 5px 0;
-        text-decoration: none;
-    }
+.footer-links-content {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
 
+.footer-links-content a {
+    color: var(--text-color);
+    margin: 5px 0;
+    text-decoration: none;
+}
 
+.page-content {
+    display: none;
+    padding: 20px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
 
-    .page-content {
-        display: none;
-        padding: 20px;
-        background-color: #2B2B2B;
-        color: #E0E0E0;
-    }
+/* ============================= */
+/*        Chat-Oberfläche         */
+/* ============================= */
 
+#chat-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+}
 
-/* Chat-Oberflächen-Stile */
-    #chat-container {
-        width: 100%;
-        max-width: 600px;
-        margin: 20px auto;
-    }
+#chat-window {
+    background-color: var(--mid-bg-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 10px;
+    height: 400px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
 
-    #chat-window {
-        background-color: #3A3A3A;
-        border: 1px solid #00FFFF;
-        border-radius: 8px;
-        padding: 10px;
-        height: 400px;
-        overflow-y: auto;
-        margin-bottom: 10px;
-    }
+#chat-messages {
+    display: flex;
+    flex-direction: column;
+}
 
-    #chat-messages {
-        display: flex;
-        flex-direction: column;
-    }
+.message {
+    margin-bottom: 10px;
+}
 
-    .message {
-        margin-bottom: 10px;
-    }
+.message.user {
+    align-self: flex-end;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    padding: 8px;
+    border-radius: 8px;
+    max-width: 80%;
+}
 
-    .message.user {
-        align-self: flex-end;
-        background-color: #1A1A1A;
-        color: #E0E0E0;
-        padding: 8px;
-        border-radius: 8px;
-        max-width: 80%;
-    }
+.message.bot {
+    align-self: flex-start;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 8px;
+    border-radius: 8px;
+    max-width: 80%;
+}
 
-    .message.bot {
-        align-self: flex-start;
-        background-color: #00FFFF;
-        color: #1A1A1A;
-        padding: 8px;
-        border-radius: 8px;
-        max-width: 80%;
-    }
+#chat-form {
+    display: flex;
+}
 
-    #chat-form {
-        display: flex;
-    }
+#chat-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px 0 0 5px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
 
-    #chat-input {
-        flex: 1;
-        padding: 10px;
-        border: 1px solid #00FFFF;
-        border-radius: 5px 0 0 5px;
-        background-color: #2B2B2B;
-        color: #E0E0E0;
-    }
+#chat-input::placeholder {
+    color: #666;
+}
 
-    #chat-input::placeholder {
-        color: #666;
-    }
+#chat-form button {
+    padding: 10px 20px;
+    border: none;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    cursor: pointer;
+    border-radius: 0 5px 5px 0;
+}
 
-    #chat-form button {
-        padding: 10px 20px;
-        border: none;
-        background-color: #00FFFF;
-        color: #1A1A1A;
-        cursor: pointer;
-        border-radius: 0 5px 5px 0;
-    }
+#chat-form button:hover {
+    background-color: var(--highlight-color);
+}
 
-    #chat-form button:hover {
-        background-color: #01acac;
-    }
+/* ============================= */
+/*        Formulareinstellungen   */
+/* ============================= */
 
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 20px auto;
+}
 
-    /* Allgemeine Formulareinstellungen - BestellApp.de*/
-    form {
-        display: flex;
-        flex-direction: column;
-        max-width: 600px;
-        margin: 20px auto;
-    }
+form label {
+    margin-top: 10px;
+    color: var(--text-color);
+}
 
-    form label {
-        margin-top: 10px;
-        color: #E0E0E0;
-    }
+form input, form textarea {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
 
-    form input, form textarea {
-        padding: 10px;
-        margin-top: 5px;
-        border: 1px solid #00FFFF;
-        border-radius: 5px;
-        background-color: #2B2B2B;
-        color: #E0E0E0;
-    }
+form button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
-    form button {
-        margin-top: 20px;
-        padding: 10px 20px;
-        background-color: #00FFFF;
-        color: #1A1A1A;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
+form button:hover {
+    background-color: var(--highlight-color);
+}
 
-    form button:hover {
-        background-color: #01acac;
-    }
+/* Nachrichten nach Formularübermittlung */
+#recommend-message, #register-message, #driver-message, #job-message, #application-message {
+    text-align: center;
+    color: #00ff22;
+    margin-top: 20px;
+}
 
-    /* Nachrichten nach Formularübermittlung */
-    #recommend-message, #register-message, #driver-message, #job-message, #application-message {
-        text-align: center;
-        color: #00ff22;
-        margin-top: 20px;
-    }
+/* Stempelkarten-Stil */
+#stamp-progress {
+    width: 100%;
+    height: 20px;
+    margin-top: 10px;
+}
 
-    /* Stempelkarten-Stil */
-    #stamp-progress {
-        width: 100%;
-        height: 20px;
-        margin-top: 10px;
-    }
+/* Rechtliche Texte */
+.legal-text {
+    max-width: 800px;
+    margin: 20px auto;
+    text-align: left;
+    line-height: 1.6;
+    color: var(--text-color);
+}
 
-    /* Rechtliche Texte */
-    .legal-text {
-        max-width: 800px;
-        margin: 20px auto;
-        text-align: left;
-        line-height: 1.6;
-        color: #E0E0E0;
-    }
-    .legal-text h3 {
-        margin-top: 20px;
-        color: #00FFFF;
-    }
-    .legal-text a {
-        color: #00FFFF; /* Türkis bzw. Neonblau */
-        text-decoration: underline; /* Optional: Unterstreicht die Links */
-    }
-    
-    .legal-text a:hover {
-        color: #009696; /* Optional: Andere Farbe beim Hover-Effekt */
-    }
+.legal-text h3 {
+    margin-top: 20px;
+    color: var(--primary-color);
+}
 
-    /* Links im Jobs-Bereich anpassen */
-    .jobs-section a {
-        color: #00FFFF; /* Türkis bzw. Neonblau */
-        text-decoration: underline; /* Optional: Unterstreicht die Links */
-    }
+.legal-text a {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
 
-    .jobs-section a:hover {
-        color: #01acac; /* Etwas dunkleres Türkis beim Hover */
-    }
+.legal-text a:hover {
+    color: #009696;
+}
 
+/* Links im Jobs-Bereich anpassen */
+.jobs-section a {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
 
+.jobs-section a:hover {
+    color: var(--highlight-color);
+}
+
+/* ============================= */
+/*        Medienabfragen          */
+/* ============================= */
 
 /* Layout für Bildschirme unter 900px */
 @media screen and (max-width: 900px) {
     .container {
-        display: flex;
-        flex-direction: column; /* Setzt die Elemente untereinander */
-        padding: 10px; /* Kleinere Polsterung für kleinere Bildschirme */
+        flex-direction: column;
+        padding: 10px;
     }
 
     .menu-container,
     .cart-container {
-        flex: 1 1 100%; /* Nimmt die gesamte Breite ein */
-        margin-bottom: 20px; /* Abstand zwischen den Containern */
+        flex: 1 1 100%;
+        margin-bottom: 20px;
     }
 
     .menu-container {
-        margin-right: 0; /* Entfernt den rechten Rand für kleinere Bildschirme */
+        margin-right: 0;
     }
 
     .restaurant-selection {
-        margin-bottom: 10px; /* Geringerer Abstand für mobile Ansicht */
+        margin-bottom: 10px;
     }
 
     .restaurant img {
-        max-width: 100%; /* Volle Breite für Restaurantbilder */
+        max-width: 100%;
     }
 
     .cart-container {
-        padding: 15px; /* Etwas mehr Polsterung für den Warenkorb */
-        border-radius: 8px; /* Beibehaltung der abgerundeten Ecken */
+        padding: 15px;
+        border-radius: 8px;
     }
 
     .dish-item {
-        flex: 1 1 100%; /* Jedes Gericht nimmt die gesamte Breite ein */
+        flex: 1 1 100%;
     }
 
     .dish-items {
-        flex-direction: column; /* Speisen werden untereinander angeordnet */
+        flex-direction: column;
     }
 
     .dish-item img {
-        width: 100%; /* Das Bild füllt die gesamte Breite des Containers */
+        width: 100%;
     }
 
-    /* Footer Links und Inhalte werden zentriert und in einer Spalte angezeigt */
     footer .footer-content {
         flex-direction: column;
         align-items: center;
     }
 
     .footer-logo {
-        margin-bottom: 20px; /* Mehr Platz für das Logo im Footer */
+        margin-bottom: 20px;
     }
 
     .footer-links-content {
-        align-items: center; /* Links zentriert untereinander */
+        align-items: center;
     }
 
     .footer-links-content a {
-        margin: 5px 0; /* Abstand zwischen den Links */
+        margin: 5px 0;
     }
 }
 
 /* Layout für Bildschirme unter 600px */
 @media screen and (max-width: 600px) {
     header {
-        padding: 10px; /* Weniger Polsterung für den Header */
+        padding: 10px;
     }
 
     .restaurant {
@@ -658,23 +690,23 @@ header {
     }
 
     .restaurant-logo {
-        width: 200px; /* Kleinere Größe für das Logo */
+        width: 200px;
     }
 
     .cart-container {
-        padding: 10px; /* Kleinere Polsterung für den Warenkorb */
-        font-size: 14px; /* Kleinere Schriftgröße für mobile Geräte */
+        padding: 10px;
+        font-size: 14px;
     }
 
     .cart-item-controls button {
-        padding: 5px; /* Kleinere Buttons für die Steuerung */
+        padding: 5px;
     }
 
     .toggle-btn {
-        padding: 5px; /* Kleinere Schaltflächen für den Toggle */
+        padding: 5px;
     }
 
     #order-btn {
-        padding: 10px; /* Kleinere Schaltfläche für den Bestell-Button */
+        padding: 10px;
     }
 }

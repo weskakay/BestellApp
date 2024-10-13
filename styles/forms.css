@@ -1,0 +1,81 @@
+/* ============================= */
+/*        Formulareinstellungen   */
+/* ============================= */
+
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+form label {
+    margin-top: 10px;
+    color: var(--text-color);
+}
+
+form input, form textarea {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+form button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: var(--highlight-color);
+}
+
+#recommend-message, #register-message, #driver-message, #job-message, #application-message {
+    text-align: center;
+    color: #00ff22;
+    margin-top: 20px;
+}
+
+#stamp-progress {
+    width: 100%;
+    height: 20px;
+    margin-top: 10px;
+}
+
+.legal-text {
+    max-width: 800px;
+    margin: 20px auto;
+    text-align: left;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+.legal-text h3 {
+    margin-top: 20px;
+    color: var(--primary-color);
+}
+
+.legal-text a {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+.legal-text a:hover {
+    color: #009696;
+}
+
+.jobs-section a {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+.jobs-section a:hover {
+    color: var(--highlight-color);
+}

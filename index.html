@@ -1,129 +1,128 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bestell-App</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <!-- Header -->
-    <header>
-        <div class="header-content">
-            <img src="/assets/icons/Logo/Logo.png" alt="Bestell-App Logo" class="restaurant-logo" href="/index.html">
-        </div>
-    </header>
-
-    <!-- Hauptcontainer -->
-    <div class="container">
-        <!-- Restaurant Auswahl -->
-        <div class="menu-container">
-            <div class="restaurant-selection">
-                <h2>Wählen Sie ein Restaurant</h2>
-                <!-- Restaurants werden dynamisch mit JavaScript geladen -->
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bestell-App</title>
+        <!-- Einbinden der CSS-Dateien -->
+        <link rel="stylesheet" href="styles/main.css"> <!-- Hauptfarben, allgemeine Stile, Header und Container -->
+        <link rel="stylesheet" href="styles/restaurant.css"> <!-- Restaurant-Bereich -->
+        <link rel="stylesheet" href="styles/dishes.css"> <!-- Speisen-Bereich -->
+        <link rel="stylesheet" href="styles/cart.css"> <!-- Warenkorb-Bereich -->
+        <link rel="stylesheet" href="styles/footer.css"> <!-- Footer -->
+        <link rel="stylesheet" href="styles/chat.css"> <!-- Chat-Oberfläche -->
+        <link rel="stylesheet" href="styles/forms.css"> <!-- Formulareinstellungen -->
+        <link rel="stylesheet" href="styles/responsive.css"> <!-- Medienabfragen -->
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <!-- Header -->
+        <header>
+            <div class="header-content">
+                <img src="/assets/icons/Logo/Logo.png" alt="Bestell-App Logo" class="restaurant-logo" href="/index.html">
             </div>
-        </div>
-
-        <!-- Warenkorb Container -->
-        <div class="cart-container sticky">
-            <h3>Warenkorb</h3>
-            <ul id="cart-items">
-                <!-- Dynamische JS-Warenkorbelemente -->
-            </ul>
-            <div class="cart-summary">
-                <p>Zwischensumme: <span id="subtotal">0,00 €</span></p>
-                <p>Lieferkosten: <span id="delivery-cost">0,00 €</span></p>
-                <p>Gesamtsumme: <span id="total-cost">0,00 €</span></p>
-            </div>
-            <div class="cart-controls">
-                <!-- Toggle für Lieferung und Abholung -->
-                <div class="delivery-toggle">
-                    <button id="delivery-btn" class="toggle-btn active" onclick="toggleDelivery(true)">Lieferung</button>
-                    <button id="pickup-btn" class="toggle-btn" onclick="toggleDelivery(false)">Abholung</button>
+        </header>
+        <!-- Hauptcontainer -->
+        <div class="container">
+            <!-- Restaurant Auswahl -->
+            <div class="menu-container">
+                <div class="restaurant-selection">
+                    <h2>Wählen Sie ein Restaurant</h2>
+                    <!-- Restaurants werden dynamisch mit JavaScript geladen -->
                 </div>
-                <!-- Bestellbutton -->
-                <button id="order-btn" onclick="placeOrder()">Bestellen</button>
             </div>
-            <div id="order-message"></div>
-        </div>
-    </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-logo">
-                <img src="/assets/icons/Logo/Logo.png" alt="Bestell-App Logo" class="footer-logo-img">
-            </div>
-            <div class="follow-us">
-                <h3>Follow Us</h3>
-                <a href="https://www.instagram.com/accounts/login/" class="social-link">Instagram</a>
-                <a href="https://www.facebook.com/" class="social-link" src="./assets/icons/Logo/facebook_logo.png">Facebook</a>
-                <a href="https://www.youtube.com/" class="social-link">YouTube</a>
-                <a href="https://x.com/" class="social-link">Twitter</a>
-                <a href="http://www.tripadvisor.de/Hotels" target="_blank" rel="noopener noreferrer"><img class="social_media" src="./img/5_section_footer/PNG/tripadvisor_logo.png" alt=""></a>
-                <a href="http://www.instagram.com/" target="_blank" rel="noopener noreferrer"><img class="social_media" src="./img/5_section_footer/PNG/instagrram_logo.png" alt=""></a>  
-            </div>
-            <div class="footer-links">
-                <h3 onclick="toggleFooterLinks()">BestellApp.de ▼</h3>
-                <div id="footer-links-content" class="footer-links-content">
-                    <a href="#" onclick="showPage(event, 'kundenservice')">Kundenservice</a>
-                    <a href="#" onclick="showPage(event, 'geschaeftEmpfehlen')">Ein Geschäft empfehlen</a>
-                    <a href="#" onclick="showPage(event, 'geschaeftAnmelden')">Ein Geschäft anmelden</a>
-                    <a href="#" onclick="showPage(event, 'fahrerWerden')">Fahrer*in werden</a>
-                    <a href="#" onclick="showPage(event, 'jobs')">Jobs</a>
-                    <a href="#" onclick="showPage(event, 'stempelkarten')">Stempelkarten</a>
-                    <a href="#" onclick="showPage(event, 'agb')">AGB</a>
-                    <a href="#" onclick="showPage(event, 'datenschutz')">Datenschutzerklärung</a>
-                    <a href="#" onclick="showPage(event, 'impressum')">Impressum</a>
-                    <a href="#" onclick="showPage(event, 'cookies')">Verwendung von Cookies</a>
+            <!-- Warenkorb Container -->
+            <div class="cart-container sticky">
+                <h3>Warenkorb</h3>
+                <ul id="cart-items">
+                    <!-- Dynamische JS-Warenkorbelemente -->
+                </ul>
+                <div class="cart-summary">
+                    <p>Zwischensumme: <span id="subtotal">0,00 €</span></p>
+                    <p>Lieferkosten: <span id="delivery-cost">0,00 €</span></p>
+                    <p>Gesamtsumme: <span id="total-cost">0,00 €</span></p>
                 </div>
-            </div>            
+                <div class="cart-controls">
+                    <!-- Toggle für Lieferung und Abholung -->
+                    <div class="delivery-toggle">
+                        <button id="delivery-btn" class="toggle-btn active" onclick="toggleDelivery(true)">Lieferung</button>
+                        <button id="pickup-btn" class="toggle-btn" onclick="toggleDelivery(false)">Abholung</button>
+                    </div>
+                    <!-- Bestellbutton -->
+                    <button id="order-btn" onclick="placeOrder()">Bestellen</button>
+                </div>
+                <div id="order-message"></div>
+            </div>
         </div>
-    </footer>
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="/assets/icons/Logo/Logo.png" alt="Bestell-App Logo" class="footer-logo-img">
+                </div>
+                <div class="follow-us">
+                    <h3>Follow Us</h3>
+                    <a href="https://www.instagram.com/accounts/login/" class="social-link">Instagram</a>
+                    <a href="https://www.facebook.com/" class="social-link" src="./assets/icons/Logo/facebook_logo.png">Facebook</a>
+                    <a href="https://www.youtube.com/" class="social-link">YouTube</a>
+                    <a href="https://x.com/" class="social-link">Twitter</a>
+                    <a href="http://www.tripadvisor.de/Hotels" target="_blank" rel="noopener noreferrer"><img class="social_media" src="./img/5_section_footer/PNG/tripadvisor_logo.png" alt=""></a>
+                    <a href="http://www.instagram.com/" target="_blank" rel="noopener noreferrer"><img class="social_media" src="./img/5_section_footer/PNG/instagrram_logo.png" alt=""></a>  
+                </div>
+                <div class="footer-links">
+                    <h3 onclick="toggleFooterLinks()">BestellApp.de ▼</h3>
+                    <div id="footer-links-content" class="footer-links-content">
+                        <a href="#" onclick="showPage(event, 'kundenservice')">Kundenservice</a>
+                        <a href="#" onclick="showPage(event, 'geschaeftEmpfehlen')">Ein Geschäft empfehlen</a>
+                        <a href="#" onclick="showPage(event, 'geschaeftAnmelden')">Ein Geschäft anmelden</a>
+                        <a href="#" onclick="showPage(event, 'fahrerWerden')">Fahrer*in werden</a>
+                        <a href="#" onclick="showPage(event, 'jobs')">Jobs</a>
+                        <a href="#" onclick="showPage(event, 'stempelkarten')">Stempelkarten</a>
+                        <a href="#" onclick="showPage(event, 'agb')">AGB</a>
+                        <a href="#" onclick="showPage(event, 'datenschutz')">Datenschutzerklärung</a>
+                        <a href="#" onclick="showPage(event, 'impressum')">Impressum</a>
+                        <a href="#" onclick="showPage(event, 'cookies')">Verwendung von Cookies</a>
+                    </div>
+                </div>            
+            </div>
+        </footer>
+        <!-- Seiteninhalte -->
+        <div id="page-content" class="page-content">
+            <!-- Inhalte für die verschiedenen Seiten werden hier angezeigt -->
+        </div>
+        <!-- Einbinden der JavaScript-Dateien -->
+        <!-- Enthält die Logik für die Restaurantauswahl und Menüanzeige -->
+        <script src="/scripts/restaurants.js"></script>
+        <!-- Enthält die Logik für den Warenkorb: Hinzufügen, Entfernen und Aktualisieren von Artikeln -->
+        <script src="/scripts/cart.js"></script>
+        <!-- Enthält die Bestelllogik: Überprüfung des Mindestbestellwerts, Bestellabgabe und Bestellbestätigung -->
+        <script src="/scripts/order.js"></script>
+        <!-- Enthält die Navigationselemente und das Umschalten der Seiten und Abschnitte -->
+        <script src="/scripts/navigation.js"></script>
+        <!-- Initialisierungsskript -->
+        <script>
+        // Warten, bis der DOM vollständig geladen ist
+        document.addEventListener('DOMContentLoaded', () => {
+            // Restaurants rendern
+            renderRestaurants();
 
-    <!-- Seiteninhalte -->
-    <div id="page-content" class="page-content">
-        <!-- Inhalte für die verschiedenen Seiten werden hier angezeigt -->
-    </div>
+            // Standardmäßig Lieferung auswählen
+            selectDelivery();
 
-    <!-- Einbinden der JavaScript-Dateien -->
+            // Event Listener für das Umschalten der Lieferung hinzufügen
+            document.getElementById('delivery-btn').addEventListener('click', () => toggleDelivery(true));
+            document.getElementById('pickup-btn').addEventListener('click', () => toggleDelivery(false));
 
-    <!-- Zuerst die Restaurant-Funktionen -->
-    <script src="/scripts/restaurants.js"></script>
+            // Event Listener für den Bestellbutton hinzufügen
+            document.getElementById('order-btn').addEventListener('click', placeOrder);
 
-    <!-- Dann die Warenkorb-Funktionen -->
-    <script src="/scripts/cart.js"></script>
-
-    <!-- Dann die Bestell-Funktionen -->
-    <script src="/scripts/order.js"></script>
-
-    <!-- Dann die Navigations-Funktionen -->
-    <script src="/scripts/navigation.js"></script>
-
-    <!-- Initialisierungsskript -->
-    <script>
-    // Warten, bis der DOM vollständig geladen ist
-    document.addEventListener('DOMContentLoaded', () => {
-        // Restaurants rendern
-        renderRestaurants();
-
-        // Standardmäßig Lieferung auswählen
-        selectDelivery();
-
-        // Event Listener für das Umschalten der Lieferung hinzufügen
-        document.getElementById('delivery-btn').addEventListener('click', () => toggleDelivery(true));
-        document.getElementById('pickup-btn').addEventListener('click', () => toggleDelivery(false));
-
-        // Event Listener für den Bestellbutton hinzufügen
-        document.getElementById('order-btn').addEventListener('click', placeOrder);
-
-        // Event Listener für den mobilen Warenkorb-Button hinzufügen (falls vorhanden)
-        const mobileCartBtn = document.getElementById('mobile-cart-btn');
-        if (mobileCartBtn) {
-            mobileCartBtn.addEventListener('click', toggleMobileCart);
-        }
-    });
-</script>
-
-</body>
+            // Event Listener für den mobilen Warenkorb-Button hinzufügen (falls vorhanden)
+            const mobileCartBtn = document.getElementById('mobile-cart-btn');
+            if (mobileCartBtn) {
+                mobileCartBtn.addEventListener('click', toggleMobileCart);
+            }
+        });
+        </script>
+    </body>
 </html>

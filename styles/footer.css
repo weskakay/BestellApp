@@ -1,0 +1,70 @@
+/* ============================= */
+/*             Footer             */
+/* ============================= */
+
+footer {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.follow-us a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.footer-content a:hover {
+    text-decoration: underline;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+}
+
+.footer-logo-img {
+    width: 100px;
+    height: auto;
+    filter: invert(73%) sepia(44%) saturate(7426%) hue-rotate(163deg) brightness(150%) contrast(90%);
+    transition: transform 0.3s;
+}
+
+.footer-logo-img:hover {
+    transform: scale(1.1);
+}
+
+.follow-us {
+    margin-top: 20px;
+}
+
+.social-link {
+    color: var(--primary-color);
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.footer-links {
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.footer-links-content {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.footer-links-content a {
+    color: var(--text-color);
+    margin: 5px 0;
+    text-decoration: none;
+}

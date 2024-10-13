@@ -1,0 +1,105 @@
+/* ============================= */
+/*        Medienabfragen          */
+/* ============================= */
+
+/* Layout für Bildschirme unter 900px */
+@media screen and (max-width: 900px) {
+    .container {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .menu-container,
+    .cart-container {
+        flex: 1 1 100%;
+        margin-bottom: 20px;
+    }
+
+    .menu-container {
+        margin-right: 0;
+    }
+
+    .restaurant-selection {
+        margin-bottom: 10px;
+    }
+
+    .restaurant img {
+        max-width: 100%;
+    }
+
+    .cart-container {
+        padding: 15px;
+        border-radius: 8px;
+    }
+
+    .dish-item {
+        flex: 1 1 100%;
+    }
+
+    .dish-items {
+        flex-direction: column;
+    }
+
+    .dish-item img {
+        width: 100%;
+    }
+
+    footer .footer-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-logo {
+        margin-bottom: 20px;
+    }
+
+    .footer-links-content {
+        align-items: center;
+    }
+
+    .footer-links-content a {
+        margin: 5px 0;
+    }
+}
+
+/* Layout für Bildschirme unter 600px */
+@media screen and (max-width: 600px) {
+    header {
+        padding: 10px;
+    }
+
+    .restaurant {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .restaurant img {
+        width: 100%;
+    }
+
+    .restaurant-info {
+        padding: 0;
+        text-align: center;
+    }
+
+    .restaurant-logo {
+        width: 200px;
+    }
+
+    .cart-container {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .cart-item-controls button {
+        padding: 5px;
+    }
+
+    .toggle-btn {
+        padding: 5px;
+    }
+
+    #order-btn {
+        padding: 10px;
+    }
+}
