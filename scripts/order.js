@@ -1,11 +1,11 @@
 // order.js
 
-// Mindestbestellwert und Lieferoption
+// Minimum order value and delivery option
 const minOrderValue = 10;
-let deliverySelected = true; // Standardmäßig auf Lieferung gesetzt
-let orderPlaced = false; // Neues Flag, um den Status der Bestellung zu verfolgen
+let deliverySelected = true; // Default set to delivery
+let orderPlaced = false; // New flag to track the status of the order
 
-// Funktion zum Umschalten zwischen Lieferung und Abholung
+// Function to toggle between delivery and pickup
 function toggleDelivery(isDelivery) {
     deliverySelected = isDelivery;
 
@@ -13,31 +13,31 @@ function toggleDelivery(isDelivery) {
     const pickupBtn = document.getElementById('pickup-btn');
 
     if (isDelivery) {
-        // Lieferung wurde ausgewählt
-        deliveryBtn.classList.add('active'); // Füge die Klasse 'active' hinzu
-        pickupBtn.classList.remove('active'); // Entferne die Klasse 'active' vom Abholungsbutton
+        // Delivery was selected
+        deliveryBtn.classList.add('active'); // Add 'active' class
+        pickupBtn.classList.remove('active'); // Remove 'active' class from pickup button
     } else {
-        // Abholung wurde ausgewählt
-        deliveryBtn.classList.remove('active'); // Entferne die Klasse 'active' vom Lieferbutton
-        pickupBtn.classList.add('active'); // Füge die Klasse 'active' hinzu
+        // Pickup was selected
+        deliveryBtn.classList.remove('active'); // Remove 'active' class from delivery button
+        pickupBtn.classList.add('active'); // Add 'active' class to pickup button
     }
 
-    // Aktualisieren Sie die Gesamtsumme, um die Änderung der Lieferkosten zu berücksichtigen
+    // Update the total to reflect the change in delivery costs
     calculateTotal();
 }
 
-// Funktion zum Platzieren einer Bestellung
+// Function to place an order
 function placeOrder() {
     if (cart.length === 0 || document.getElementById('order-btn').disabled) {
-        return; // Verhindert das Platzieren der Bestellung, wenn der Warenkorb leer oder der Button deaktiviert ist
+        return; // Prevent placing the order if the cart is empty or the button is disabled
     }
 
-    orderPlaced = true; // Setzt das Flag nach der Bestellung auf true
-    cart = []; // Leeren des Warenkorbs
+    orderPlaced = true; // Set the flag to true after placing the order
+    cart = []; // Empty the cart
     renderCart();
-    calculateTotal(); // Berechne die Gesamtsumme neu
+    calculateTotal(); // Recalculate the total
 
-    // Zeigt die Bestellbestätigung an
+    // Show the order confirmation
     let orderConfirmation = document.getElementById('order-confirmation');
     if (!orderConfirmation) {
         orderConfirmation = document.createElement('div');
@@ -52,18 +52,16 @@ function placeOrder() {
         orderConfirmation.style.textAlign = 'center';
     }
 
-    orderConfirmation.innerHTML = "Danke für Ihre Bestellung! Ihre Bestellung wird bearbeitet.<br>Sie können in wenigen Momenten eine neue Bestellung aufgeben.";
+    orderConfirmation.innerHTML = "Thank you for your order! Your order is being processed.<br>You can place a new order in a few moments.";
     const header = document.querySelector('header');
     header.after(orderConfirmation);
     orderConfirmation.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-    // Optional: Ausblenden der Nachricht nach einigen Sekunden
+    // Optionally hide the message after a few seconds
     setTimeout(() => {
         orderConfirmation.remove();
-        orderPlaced = false; // Setze das Flag wieder zurück, um zukünftige Bestellungen zu ermöglichen
-        // Seite neu laden, um alles zurückzusetzen
-        location.reload(); // Lädt die Seite neu
-    }, 4000);// Warte 4 Sekunden, bevor die Seite neu geladen wird
+        orderPlaced = false; // Reset the flag to allow future orders
+        // Reload the page to reset everything
+        location.reload(); // Reloads the page
+    }, 4000); // Wait 4 seconds before reloading the page
 }
-
-

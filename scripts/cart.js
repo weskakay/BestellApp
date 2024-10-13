@@ -1,11 +1,11 @@
 // cart.js
 
-// Warenkorb-Array
+// Cart array
 let cart = [];
 
-// Funktion zum Hinzufügen von Gerichten zum Warenkorb
+// Function to add dishes to the cart
 function addToCart(restaurantKey, category, dishName, price) {
-    console.log(`Gericht ${dishName} wird zum Warenkorb hinzugefügt.`);
+    console.log(`Dish ${dishName} is being added to the cart.`);
     const existingItemIndex = cart.findIndex(item => item.name === dishName && item.restaurant === restaurantKey);
     if (existingItemIndex > -1) {
         cart[existingItemIndex].quantity += 1;
@@ -16,7 +16,7 @@ function addToCart(restaurantKey, category, dishName, price) {
     calculateTotal();
 }
 
-// Funktion zum Rendern des Warenkorbs
+// Function to render the cart
 function renderCart() {
     const cartItemsContainer = document.getElementById('cart-items');
     cartItemsContainer.innerHTML = '';
@@ -39,7 +39,7 @@ function renderCart() {
         cartItemsContainer.appendChild(cartItem);
     });
 
-    // Aktualisieren der Anzahl im mobilen Warenkorb (falls vorhanden)
+    // Update the number of items in the mobile cart (if available)
     const mobileCartCount = document.getElementById('mobile-cart-count');
     if (mobileCartCount) {
         const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -47,7 +47,7 @@ function renderCart() {
     }
 }
 
-// Funktion zum Ändern der Menge eines Artikels
+// Function to change the quantity of an item
 function changeQuantity(index, action) {
     if (action === 'increase') {
         cart[index].quantity += 1;
@@ -60,14 +60,14 @@ function changeQuantity(index, action) {
     calculateTotal();
 }
 
-// Funktion zum Entfernen eines Artikels aus dem Warenkorb
+// Function to remove an item from the cart
 function removeItem(index) {
     cart.splice(index, 1);
     renderCart();
     calculateTotal();
 }
 
-// Funktion zur Berechnung der Gesamtsumme
+// Function to calculate the total sum
 function calculateTotal() {
     let subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
     let total = subtotal;
@@ -76,50 +76,48 @@ function calculateTotal() {
     const orderBtn = document.getElementById('order-btn');
     const orderMessage = document.getElementById('order-message');
 
-    // Wenn kein Restaurant ausgewählt ist
+    // If no restaurant is selected
     if (!selectedRestaurant) {
-        document.getElementById('delivery-cost').innerText = `0,00 €`;
-        orderMessage.innerText = "Bitte wählen Sie ein Restaurant aus.";
+        document.getElementById('delivery-cost').innerText = `0.00 €`;
+        orderMessage.innerText = "Please select a restaurant.";
         orderMessage.style.display = 'block';
         orderBtn.disabled = true;
         orderBtn.classList.remove('active');
-        return; // Beenden der Funktion, wenn kein Restaurant ausgewählt ist
+        return; // Exit the function if no restaurant is selected
     }
 
-    // Wenn Lieferung ausgewählt ist
+    // If delivery is selected
     if (deliverySelected) {
         if (restaurants[selectedRestaurant]) {
-            // Lieferkosten vom ausgewählten Restaurant holen
+            // Get delivery cost from the selected restaurant
             deliveryCost = restaurants[selectedRestaurant].deliveryPrice;
-            total += deliveryCost; // Lieferkosten zur Gesamtsumme hinzufügen
+            total += deliveryCost; // Add delivery cost to the total
             document.getElementById('delivery-cost').innerText = `${deliveryCost.toFixed(2)} €`;
         } else {
-            document.getElementById('delivery-cost').innerText = `0,00 €`;
+            document.getElementById('delivery-cost').innerText = `0.00 €`;
         }
     } else {
-        // Wenn Abholung ausgewählt ist
-        deliveryCost = 0; // Keine Lieferkosten bei Abholung
-        document.getElementById('delivery-cost').innerText = `0,00 €`;
+        // If pickup is selected
+        deliveryCost = 0; // No delivery cost for pickup
+        document.getElementById('delivery-cost').innerText = `0.00 €`;
     }
 
-    // Aktualisieren der Anzeige für Zwischensumme und Gesamtsumme
+    // Update display for subtotal and total
     document.getElementById('subtotal').innerText = `${subtotal.toFixed(2)} €`;
     document.getElementById('total-cost').innerText = `${total.toFixed(2)} €`;
 
-    // Überprüfen des Mindestbestellwerts basierend auf der Zwischensumme, nur wenn noch keine Bestellung aufgegeben wurde
+    // Check if the minimum order value is met, only if no order has been placed yet
     if (!orderPlaced && subtotal < minOrderValue) {
         const amountMissing = minOrderValue - subtotal;
-        orderMessage.innerText = `Der Mindestbestellwert beträgt ${minOrderValue.toFixed(2)} €. Ihnen fehlen noch ${amountMissing.toFixed(2)} €.`;
+        orderMessage.innerText = `The minimum order value is ${minOrderValue.toFixed(2)} €. You still need ${amountMissing.toFixed(2)} € to complete the order.`;
         orderMessage.style.display = 'block';
         orderBtn.disabled = true;
         orderBtn.classList.remove('active');
     } else if (!orderPlaced) {
-        // Alles erfüllt, Bestellung kann aufgegeben werden
+        // All conditions met, order can be placed
         orderBtn.disabled = false;
         orderBtn.classList.add('active');
         orderMessage.innerText = "";
         orderMessage.style.display = 'none';
     }
 }
-
-

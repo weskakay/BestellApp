@@ -1,9 +1,9 @@
 // restaurant.js
 
-// Aktuell ausgewähltes Restaurant
+// Currently selected restaurant
 let selectedRestaurant = null;
 
-// Restaurant-Datenbank
+// Restaurant database
 const restaurants = {
     italian: {
         name: "Italienisches Restaurant",
@@ -82,10 +82,10 @@ const restaurants = {
     }
 };
 
-// Funktion zum Rendern der Restaurants
+// Function to render the restaurants
 function renderRestaurants() {
     const restaurantSelection = document.querySelector('.restaurant-selection');
-    restaurantSelection.innerHTML = ''; // Leeren des Containers
+    restaurantSelection.innerHTML = ''; // Clear the container
 
     Object.keys(restaurants).forEach(key => {
         const restaurant = restaurants[key];
@@ -94,10 +94,10 @@ function renderRestaurants() {
         restaurantElement.id = key;
         restaurantElement.onclick = () => toggleRestaurant(key);
 
-        // Erzeugen der Sternebewertung
+        // Create star rating
         const starRating = generateStarRating(restaurant.rating);
 
-        // Dynamisch das Bild und die Informationen hinzufügen
+        // Dynamically add the image and information
         restaurantElement.innerHTML = `
             <img src="${restaurant.image}" alt="${restaurant.fullName}">
             <div class="restaurant-info">
@@ -114,38 +114,38 @@ function renderRestaurants() {
     });
 }
 
-// Funktion zum Umschalten des ausgewählten Restaurants
+// Function to toggle the selected restaurant
 function toggleRestaurant(restaurantKey) {
     console.log(`Restaurant ${restaurantKey} ausgewählt.`);
 
-    // Überprüfen, ob der Container bereits existiert
+    // Check if the container already exists
     let menuContainer = document.querySelector(`#${restaurantKey}-menu`);
 
     if (selectedRestaurant === restaurantKey) {
-        // Wenn dasselbe Restaurant ausgewählt wird, klappen wir es zu
+        // If the same restaurant is selected, collapse it
         selectedRestaurant = null;
         if (menuContainer) {
-            menuContainer.remove(); // Entfernt den vorhandenen Menücontainer
+            menuContainer.remove(); // Remove the existing menu container
         }
         return;
     }
 
     if (selectedRestaurant && selectedRestaurant !== restaurantKey) {
-        // Wenn ein anderes Restaurant ausgewählt ist und der Warenkorb nicht leer ist
+        // If another restaurant is selected and the cart is not empty
         if (cart.length > 0) {
             const confirmSwitch = confirm("Sie haben bereits eine Bestellung im anderen Restaurant. Möchten Sie diese Bestellung abbrechen und eine neue beginnen?");
             if (!confirmSwitch) {
-                // Wenn der Benutzer sich entscheidet, die Bestellung nicht abzubrechen
+                // If the user decides not to cancel the order
                 return;
             } else {
-                // Wenn der Benutzer sich entscheidet, die Bestellung abzubrechen
-                cart = []; // Leere den Warenkorb
-                renderCart(); // Aktualisiere den Warenkorb in der Ansicht
-                calculateTotal(); // Berechne die Gesamtsumme neu
+                // If the user decides to cancel the order
+                cart = []; // Empty the cart
+                renderCart(); // Update the cart view
+                calculateTotal(); // Recalculate the total
             }
         }
 
-        // Entfernt den Menücontainer des vorherigen Restaurants
+        // Remove the previous restaurant's menu container
         let previousMenuContainer = document.querySelector(`#${selectedRestaurant}-menu`);
         if (previousMenuContainer) {
             previousMenuContainer.remove();
@@ -154,7 +154,7 @@ function toggleRestaurant(restaurantKey) {
 
     selectedRestaurant = restaurantKey;
     
-    // Erstelle einen neuen Container direkt unter dem Restaurant
+    // Create a new container directly below the restaurant
     if (!menuContainer) {
         menuContainer = document.createElement('div');
         menuContainer.id = `${restaurantKey}-menu`;
@@ -162,14 +162,14 @@ function toggleRestaurant(restaurantKey) {
         document.getElementById(restaurantKey).after(menuContainer);
     }
 
-    // Lade das Menü in den neu erstellten Container
+    // Load the menu into the newly created container
     loadMenu(restaurantKey, menuContainer);
 
-    // Smooth Scroll zu dem neu erstellten Menübereich
+    // Smooth scroll to the newly created menu section
     menuContainer.scrollIntoView({ behavior: 'smooth' });
 }
 
-// Funktion zum Laden des Menüs eines Restaurants
+// Function to load a restaurant's menu
 function loadMenu(restaurantKey, container) {
     const restaurant = restaurants[restaurantKey];
     if (!restaurant) {
@@ -219,7 +219,7 @@ function loadMenu(restaurantKey, container) {
     }
 }
 
-// Hilfsfunktion zur Generierung der Sternebewertung
+// Function to generate star rating
 function generateStarRating(rating) {
     const fullStars = Math.floor(rating);
     const halfStar = rating % 1 >= 0.5;
@@ -241,7 +241,7 @@ function generateStarRating(rating) {
     return starsHTML;
 }
 
-// Funktion zur Auswahl der Lieferung beim Laden der Seite
+// Function to select delivery when the page loads
 function selectDelivery() {
-    toggleDelivery(true); // Standardmäßig Lieferung auswählen
+    toggleDelivery(true); // Default to delivery
 }

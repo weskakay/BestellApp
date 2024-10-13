@@ -1,22 +1,22 @@
 // navigation.js
 
-// Funktion zum Umschalten der Footer-Links
+// Function to toggle the footer links
 function toggleFooterLinks() {
   const footerLinksContent = document.getElementById('footer-links-content');
   const pageContent = document.getElementById('page-content');
   
   if (footerLinksContent.style.display === 'none' || footerLinksContent.style.display === '') {
       footerLinksContent.style.display = 'flex';
-      footerLinksContent.scrollIntoView({ behavior: 'smooth' }); // Smooth Scroll zum Footer
+      footerLinksContent.scrollIntoView({ behavior: 'smooth' }); // Smooth scroll to footer
   } else {
       footerLinksContent.style.display = 'none';
-      pageContent.style.display = 'none'; // Versteckt die Seite, wenn die Liste zugeklappt wird
+      pageContent.style.display = 'none'; // Hide the page when the list is collapsed
   }
 }
 
-// Funktion zum Anzeigen der verschiedenen Seiteninhalte
+// Function to display different page content
 function showPage(event, pageId) {
-  event.preventDefault();  // Verhindert das Standardverhalten, das das Scrollen nach oben verursacht
+  event.preventDefault();  // Prevents the default behavior that causes the page to scroll up
   const pageContent = document.getElementById('page-content');
   let content = '';
 
@@ -361,7 +361,7 @@ function showPage(event, pageId) {
   pageContent.innerHTML = content;
   pageContent.style.display = 'block';
 
-  // Initialisieren des Chatbots nur für die Kundenservice-Seite
+  // Initialize the chatbot only for the customer service page
   if (pageId === 'kundenservice') {
       initializeChatbot();
   } else if (pageId === 'geschaeftEmpfehlen') {
@@ -373,11 +373,11 @@ function showPage(event, pageId) {
   } else if (pageId === 'jobs') {
       initializeJobApplications();
   }
-  // Sicherstellen, dass die Seite unten bleibt
+  // Ensure that the page remains at the bottom
   pageContent.scrollIntoView({ behavior: 'smooth', block: 'end' });
 }
 
-// Initialisierungsfunktionen für die verschiedenen Seiten
+// Initialization functions for various pages
 // Chatbot
 function initializeChatbot() {
   const chatForm = document.getElementById('chat-form');
@@ -388,6 +388,7 @@ function initializeChatbot() {
       "bestellung": "Um Ihre Bestellung einzusehen, klicken Sie bitte auf 'Warenkorb'.",
       "bestellungen": "Sie können Ihre aktuellen und vergangenen Bestellungen im 'Warenkorb' einsehen.",
       "hilfe": "Wie kann ich Ihnen helfen?",
+      "lieferung": "Beachten Sie bitte den Mindestbestellwert bei einer Lieferung!",
       "lieferzeit": "⏰ Die aktuelle Lieferzeit beträgt ca. 30 Minuten.",
       "verspätung": "Wir entschuldigen uns für die Verzögerung. Ihre Bestellung wird so schnell wie möglich geliefert.",
       "restaurant": "Um welches Restaurant handelt es sich?",
@@ -423,7 +424,7 @@ function initializeChatbot() {
       "jobs": "Informationen zu offenen Stellen finden Sie im Bereich 'Jobs' unten auf der Seite.",
       "fahrer": "Wenn Sie Interesse haben, als Fahrer*in zu arbeiten, besuchen Sie bitte den Bereich 'Fahrer*in werden'.",
       "email": "Sie können uns auch per E-Mail unter service@bestellapp.de kontaktieren.",
-      // Weitere Schlüsselwörter und Antworten können hinzugefügt werden
+      // More keywords and responses can be added
   };
   responses["hi"] = responses["hallo"];
   responses["bestellungen"] = responses["bestellung"];
@@ -432,7 +433,7 @@ function initializeChatbot() {
   responses["kontakt"] = responses["hilfe"];
   responses["speisen"] = responses["speisekarte"];
   responses["menü"] = responses["speisekarte"];
-  // Weitere Synonyme
+  // More synonyms
   
 
   chatForm.addEventListener('submit', function(event) {
@@ -440,19 +441,19 @@ function initializeChatbot() {
       const userMessage = chatInput.value.trim();
       if (userMessage === '') return;
 
-      // Anzeige der Benutzer-Nachricht
+      // Display the user's message
       const userMessageElement = document.createElement('div');
       userMessageElement.classList.add('message', 'user');
       userMessageElement.innerText = userMessage;
       chatMessages.appendChild(userMessageElement);
 
-      // Scrollen zum Ende
+      // Scroll to the bottom
       chatMessages.scrollTop = chatMessages.scrollHeight;
 
-      // Eingabe leeren
+      // Clear input
       chatInput.value = '';
 
-      // Einfache Schlüsselwort-basierte Antwort
+      // Simple keyword-based response
       let botResponse = "Es tut mir leid, ich verstehe Ihre Anfrage nicht. Bitte versuchen Sie es anders zu formulieren.";
 
       const userMessageWords = userMessage.toLowerCase().split(/\s+/);
@@ -464,41 +465,41 @@ function initializeChatbot() {
           }
       }
 
-      // Anzeige der Bot-Antwort
+      // Display the bot's response
       const botMessageElement = document.createElement('div');
       botMessageElement.classList.add('message', 'bot');
       botMessageElement.innerText = botResponse;
       chatMessages.appendChild(botMessageElement);
 
-      // Scrollen zum Ende
+      // Scroll to the bottom
       chatMessages.scrollTop = chatMessages.scrollHeight;
   });
 }
-// Geschäft empfehlen
+// Recommend a business
 function initializeRecommendForm() {
   const recommendForm = document.getElementById('recommend-form');
   const recommendMessage = document.getElementById('recommend-message');
 
   recommendForm.addEventListener('submit', function(event) {
       event.preventDefault();
-      // Hier können Sie die Formulardaten verarbeiten und senden
+      // Process and send the form data here
       recommendMessage.innerText = "Vielen Dank für Ihre Empfehlung! Wir werden das Geschäft prüfen.";
       recommendForm.reset();
   });
 }
-// Geschäft anmelden
+// Register a business
 function initializeRegisterForm() {
   const registerForm = document.getElementById('register-form');
   const registerMessage = document.getElementById('register-message');
 
   registerForm.addEventListener('submit', function(event) {
       event.preventDefault();
-      // Hier können Sie die Formulardaten verarbeiten und senden
+      // Process and send the form data here
       registerMessage.innerText = "Vielen Dank für Ihre Anmeldung! Wir werden uns in Kürze mit Ihnen in Verbindung setzen.";
       registerForm.reset();
   });
 }
-// Fahrer*in werden
+// Become a driver
 function initializeDriverForm() {
   const driverForm = document.getElementById('driver-form');
   const driverMessage = document.getElementById('driver-message');
@@ -515,7 +516,7 @@ function initializeJobApplications() {
   const jobMessage = document.getElementById('job-message');
 
   window.applyJob = function(event, position) {
-    event.preventDefault(); // Verhindert das Standardverhalten des Links
+    event.preventDefault(); // Prevent the default behavior of the link
 
     const jobMessage = document.getElementById('job-message');
 
@@ -534,19 +535,19 @@ function initializeJobApplications() {
           </form>
           <div id="application-message"></div>
       `;
-      // Formular wird in den DOM eingefügt
+      // Insert the form into the DOM
       jobMessage.innerHTML = jobForm;
-      // Zugriff auf das neu hinzugefügte Formular
+      // Access the newly added form
       const jobApplicationForm = document.getElementById('job-application-form');
       const applicationMessage = document.getElementById('application-message');
-      // Eventlistener für das Absenden des Formulars
+      // Event listener for form submission
       jobApplicationForm.addEventListener('submit', function(event) {
           event.preventDefault();
-          // Hier können Sie die Formulardaten verarbeiten und senden
+          // Process and send the form data here
           applicationMessage.innerText = "Vielen Dank für Ihre Bewerbung! Wir werden uns in Kürze bei Ihnen melden.";
           jobApplicationForm.reset();
       });
-      // Sanftes Scrollen zum Formular
+      // Smooth scroll to the form
       jobMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 }

@@ -1,8 +1,8 @@
 /* ============================= */
-/*        Medienabfragen          */
+/*        Media Queries           */
 /* ============================= */
 
-/* Layout für Bildschirme unter 900px */
+/* Layout for screens under 900px */
 @media screen and (max-width: 900px) {
     .container {
         flex-direction: column;
@@ -62,7 +62,7 @@
     }
 }
 
-/* Layout für Bildschirme unter 600px */
+/* Layout for screens under 600px */
 @media screen and (max-width: 600px) {
     header {
         padding: 10px;

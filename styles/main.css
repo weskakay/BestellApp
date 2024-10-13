@@ -1,23 +1,23 @@
 /* ============================= */
-/*        Hauptfarben Variablen   */
+/*        Main Color Variables    */
 /* ============================= */
 
 :root {
-    --background-color: #2B2B2B; /* Carbon Grau Hintergrund */
-    --text-color: #E0E0E0; /* Hellgrauer Text für gute Lesbarkeit */
-    --primary-color: #00FFFF; /* Cyan Hauptfarbe */
-    --secondary-color: #1A1A1A; /* Dunkleres Grau für Header und Footer */
-    --mid-bg-color: #3A3A3A; /* Mittleres Grau für verschiedene Container */
-    --highlight-color: #01acac; /* Leicht dunkleres Cyan für Hover-Effekte */
-    --warning-color: #FF0000; /* Rot für Warnungen */
-    --success-bg-color: #d4edda; /* Heller Grünton */
-    --success-text-color: #155724; /* Dunkler Grünton für Text in Bestätigungsmeldungen */
-    --border-color: #c3e6cb; /* Randfarbe für Bestätigungsmeldungen */
-    --star-color: #FFD700; /* Goldene Farbe für Sterne */
+    --background-color: #2B2B2B; /* Carbon gray background */
+    --text-color: #E0E0E0; /* Light gray text for readability */
+    --primary-color: #00FFFF; /* Cyan primary color */
+    --secondary-color: #1A1A1A; /* Darker gray for header and footer */
+    --mid-bg-color: #3A3A3A; /* Medium gray for various containers */
+    --highlight-color: #01acac; /* Slightly darker cyan for hover effects */
+    --warning-color: #FF0000; /* Red for warnings */
+    --success-bg-color: #d4edda; /* Light green background for success messages */
+    --success-text-color: #155724; /* Dark green text for success messages */
+    --border-color: #c3e6cb; /* Border color for success messages */
+    --star-color: #FFD700; /* Golden color for stars */
 }
 
 /* ============================= */
-/*        Allgemeine Stile        */
+/*         General Styles         */
 /* ============================= */
 
 body {
@@ -30,7 +30,7 @@ body {
 }
 
 /* ============================= */
-/*            Header              */
+/*             Header             */
 /* ============================= */
 
 header {
