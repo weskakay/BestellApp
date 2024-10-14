@@ -1,9 +1,5 @@
-// restaurant.js
-
-// Currently selected restaurant
 let selectedRestaurant = null;
 
-// Restaurant database
 const restaurants = {
     italian: {
         name: "Italienisches Restaurant",
@@ -82,10 +78,9 @@ const restaurants = {
     }
 };
 
-// Function to render the restaurants
 function renderRestaurants() {
     const restaurantSelection = document.querySelector('.restaurant-selection');
-    restaurantSelection.innerHTML = ''; // Clear the container
+    restaurantSelection.innerHTML = '';
 
     Object.keys(restaurants).forEach(key => {
         const restaurant = restaurants[key];
@@ -93,11 +88,7 @@ function renderRestaurants() {
         restaurantElement.className = 'restaurant';
         restaurantElement.id = key;
         restaurantElement.onclick = () => toggleRestaurant(key);
-
-        // Create star rating
         const starRating = generateStarRating(restaurant.rating);
-
-        // Dynamically add the image and information
         restaurantElement.innerHTML = `
             <img src="${restaurant.image}" alt="${restaurant.fullName}">
             <div class="restaurant-info">
@@ -114,62 +105,70 @@ function renderRestaurants() {
     });
 }
 
-// Function to toggle the selected restaurant
 function toggleRestaurant(restaurantKey) {
     console.log(`Restaurant ${restaurantKey} ausgewählt.`);
 
-    // Check if the container already exists
     let menuContainer = document.querySelector(`#${restaurantKey}-menu`);
 
-    if (selectedRestaurant === restaurantKey) {
-        // If the same restaurant is selected, collapse it
-        selectedRestaurant = null;
-        if (menuContainer) {
-            menuContainer.remove(); // Remove the existing menu container
-        }
+    if (selectedRestaurant && selectedRestaurant !== restaurantKey && cart.length > 0) {
+        // Modal anzeigen
+        const modal = document.getElementById('restaurant-switch-modal');
+        modal.style.display = 'flex';
+
+        // Handhabung der Buttons im Modal
+        document.getElementById('confirm-switch').onclick = () => {
+            modal.style.display = 'none';
+
+            // Altes Menü schließen
+            let previousMenuContainer = document.querySelector(`#${selectedRestaurant}-menu`);
+            if (previousMenuContainer) {
+                previousMenuContainer.remove();
+            }
+
+            // Warenkorb leeren, neues Restaurant setzen und anzeigen
+            cart = [];
+            selectedRestaurant = restaurantKey; 
+            renderCart();
+            calculateTotal();
+
+            // Menü für das neue Restaurant anzeigen
+            if (!menuContainer) {
+                menuContainer = document.createElement('div');
+                menuContainer.id = `${restaurantKey}-menu`;
+                menuContainer.className = 'menu-container';
+                document.getElementById(restaurantKey).after(menuContainer);
+            }
+            loadMenu(restaurantKey, menuContainer);
+            menuContainer.scrollIntoView({ behavior: 'smooth' });
+        };
+
+        document.getElementById('cancel-switch').onclick = () => {
+            modal.style.display = 'none';
+
+            // Zurückscrollen zum aktuellen Restaurant
+            let currentMenuContainer = document.querySelector(`#${selectedRestaurant}-menu`);
+            if (currentMenuContainer) {
+                currentMenuContainer.scrollIntoView({ behavior: 'smooth' });
+            }
+        };
         return;
     }
 
-    if (selectedRestaurant && selectedRestaurant !== restaurantKey) {
-        // If another restaurant is selected and the cart is not empty
-        if (cart.length > 0) {
-            const confirmSwitch = confirm("Sie haben bereits eine Bestellung im anderen Restaurant. Möchten Sie diese Bestellung abbrechen und eine neue beginnen?");
-            if (!confirmSwitch) {
-                // If the user decides not to cancel the order
-                return;
-            } else {
-                // If the user decides to cancel the order
-                cart = []; // Empty the cart
-                renderCart(); // Update the cart view
-                calculateTotal(); // Recalculate the total
-            }
-        }
-
-        // Remove the previous restaurant's menu container
-        let previousMenuContainer = document.querySelector(`#${selectedRestaurant}-menu`);
-        if (previousMenuContainer) {
-            previousMenuContainer.remove();
-        }
-    }
-
+    // Aktuelles Restaurant setzen und Menü anzeigen
     selectedRestaurant = restaurantKey;
-    
-    // Create a new container directly below the restaurant
+
+    // Menü für das ausgewählte Restaurant laden
     if (!menuContainer) {
         menuContainer = document.createElement('div');
         menuContainer.id = `${restaurantKey}-menu`;
         menuContainer.className = 'menu-container';
         document.getElementById(restaurantKey).after(menuContainer);
     }
-
-    // Load the menu into the newly created container
     loadMenu(restaurantKey, menuContainer);
-
-    // Smooth scroll to the newly created menu section
     menuContainer.scrollIntoView({ behavior: 'smooth' });
 }
 
-// Function to load a restaurant's menu
+
 function loadMenu(restaurantKey, container) {
     const restaurant = restaurants[restaurantKey];
     if (!restaurant) {
@@ -219,7 +218,6 @@ function loadMenu(restaurantKey, container) {
     }
 }
 
-// Function to generate star rating
 function generateStarRating(rating) {
     const fullStars = Math.floor(rating);
     const halfStar = rating % 1 >= 0.5;
@@ -241,7 +239,6 @@ function generateStarRating(rating) {
     return starsHTML;
 }
 
-// Function to select delivery when the page loads
 function selectDelivery() {
-    toggleDelivery(true); // Default to delivery
+    toggleDelivery(true);
 }

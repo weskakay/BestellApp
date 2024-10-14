@@ -1,11 +1,7 @@
-// order.js
-
-// Minimum order value and delivery option
 const minOrderValue = 10;
-let deliverySelected = true; // Default set to delivery
-let orderPlaced = false; // New flag to track the status of the order
+let deliverySelected = true; 
+let orderPlaced = false; 
 
-// Function to toggle between delivery and pickup
 function toggleDelivery(isDelivery) {
     deliverySelected = isDelivery;
 
@@ -13,31 +9,25 @@ function toggleDelivery(isDelivery) {
     const pickupBtn = document.getElementById('pickup-btn');
 
     if (isDelivery) {
-        // Delivery was selected
-        deliveryBtn.classList.add('active'); // Add 'active' class
-        pickupBtn.classList.remove('active'); // Remove 'active' class from pickup button
+        deliveryBtn.classList.add('active');
+        pickupBtn.classList.remove('active'); 
     } else {
-        // Pickup was selected
-        deliveryBtn.classList.remove('active'); // Remove 'active' class from delivery button
-        pickupBtn.classList.add('active'); // Add 'active' class to pickup button
+        deliveryBtn.classList.remove('active'); 
+        pickupBtn.classList.add('active'); 
     }
-
-    // Update the total to reflect the change in delivery costs
     calculateTotal();
 }
 
-// Function to place an order
 function placeOrder() {
     if (cart.length === 0 || document.getElementById('order-btn').disabled) {
-        return; // Prevent placing the order if the cart is empty or the button is disabled
+        return; 
     }
 
-    orderPlaced = true; // Set the flag to true after placing the order
-    cart = []; // Empty the cart
+    orderPlaced = true; 
+    cart = []; 
     renderCart();
-    calculateTotal(); // Recalculate the total
+    calculateTotal(); 
 
-    // Show the order confirmation
     let orderConfirmation = document.getElementById('order-confirmation');
     if (!orderConfirmation) {
         orderConfirmation = document.createElement('div');
@@ -57,11 +47,9 @@ function placeOrder() {
     header.after(orderConfirmation);
     orderConfirmation.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-    // Optionally hide the message after a few seconds
     setTimeout(() => {
         orderConfirmation.remove();
-        orderPlaced = false; // Reset the flag to allow future orders
-        // Reload the page to reset everything
-        location.reload(); // Reloads the page
-    }, 4000); // Wait 4 seconds before reloading the page
+        orderPlaced = false;
+        location.reload();
+    }, 4000);
 }
