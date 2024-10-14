@@ -1,11 +1,7 @@
-/* ============================= */
-/*        Main Color Variables    */
-/* ============================= */
-
 :root {
-    --background-color: #2B2B2B; /* Carbon gray background */
-    --text-color: #E0E0E0; /* Light gray text for readability */
-    --primary-color: #00FFFF; /* Cyan primary color */
+    --background-color: #2B2B2B;
+    --text-color: #E0E0E0;
+    --primary-color: #00FFFF;
     --secondary-color: #1A1A1A; /* Darker gray for header and footer */
     --mid-bg-color: #3A3A3A; /* Medium gray for various containers */
     --highlight-color: #01acac; /* Slightly darker cyan for hover effects */
@@ -13,12 +9,8 @@
     --success-bg-color: #d4edda; /* Light green background for success messages */
     --success-text-color: #155724; /* Dark green text for success messages */
     --border-color: #c3e6cb; /* Border color for success messages */
-    --star-color: #FFD700; /* Golden color for stars */
+    --star-color: #FFD700; 
 }
-
-/* ============================= */
-/*         General Styles         */
-/* ============================= */
 
 body {
     font-family: 'Roboto', Arial, sans-serif;

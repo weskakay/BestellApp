@@ -4,40 +4,32 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Bestell-App</title>
-        <!-- Linking CSS files -->
-        <link rel="stylesheet" href="styles/main.css"> <!-- Main colors, general styles, header, and container -->
-        <link rel="stylesheet" href="styles/restaurant.css"> <!-- Restaurant area -->
-        <link rel="stylesheet" href="styles/dishes.css"> <!-- Dishes area -->
-        <link rel="stylesheet" href="styles/cart.css"> <!-- Cart area -->
-        <link rel="stylesheet" href="styles/footer.css"> <!-- Footer -->
-        <link rel="stylesheet" href="styles/chat.css"> <!-- Chat interface -->
-        <link rel="stylesheet" href="styles/forms.css"> <!-- Form styles -->
-        <link rel="stylesheet" href="styles/responsive.css"> <!-- Media queries for responsiveness -->
+        <link rel="stylesheet" href="styles/main.css"> 
+        <link rel="stylesheet" href="styles/restaurant.css">
+        <link rel="stylesheet" href="styles/dishes.css"> 
+        <link rel="stylesheet" href="styles/cart.css">
+        <link rel="stylesheet" href="styles/footer.css">
+        <link rel="stylesheet" href="styles/chat.css">
+        <link rel="stylesheet" href="styles/forms.css">
+        <link rel="stylesheet" href="styles/responsive.css">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
         <link rel="icon" href="/assets/icons/Favicon/favicon.ico" type="image/x-icon">
     </head>
     <body>
-        <!-- Header -->
         <header>
             <div class="header-content">
                 <img src="/assets/icons/Logo/Logo.png" alt="Bestell-App Logo" class="restaurant-logo" href="/index.html">
             </div>
         </header>
-        <!-- Main container -->
         <div class="container">
-            <!-- Restaurant selection -->
             <div class="menu-container">
                 <div class="restaurant-selection">
                     <h2>Wählen Sie ein Restaurant</h2>
-                    <!-- Restaurants are dynamically loaded with JavaScript -->
                 </div>
             </div>
-
-            <!-- Cart container -->
             <div class="cart-container sticky">
                 <h3>Warenkorb</h3>
                 <ul id="cart-items">
-                    <!-- Cart items are dynamically added with JavaScript -->
                 </ul>
                 <div class="cart-summary">
                     <p>Zwischensumme: <span id="subtotal">0,00 €</span></p>
@@ -45,18 +37,15 @@
                     <p>Gesamtsumme: <span id="total-cost">0,00 €</span></p>
                 </div>
                 <div class="cart-controls">
-                    <!-- Toggle for delivery and pickup -->
                     <div class="delivery-toggle">
                         <button id="delivery-btn" class="toggle-btn active" onclick="toggleDelivery(true)">Lieferung</button>
                         <button id="pickup-btn" class="toggle-btn" onclick="toggleDelivery(false)">Abholung</button>
                     </div>
-                    <!-- Order button -->
                     <button id="order-btn" onclick="placeOrder()">Bestellen</button>
                 </div>
                 <div id="order-message"></div>
             </div>
         </div>
-        <!-- Footer -->
         <footer>
             <div class="footer-content">
                 <div class="footer-logo">
@@ -93,37 +82,18 @@
                 </div>            
             </div>
         </footer>
-        <!-- Page content -->
-        <div id="page-content" class="page-content">
-            <!-- Content for the different pages will be shown here -->
-        </div>
-        <!-- Including JavaScript files -->
-        <!-- Logic for restaurant selection and menu display -->
+        <div id="page-content" class="page-content"></div>
         <script src="/scripts/restaurants.js"></script>
-        <!-- Logic for the cart: adding, removing, and updating items -->
         <script src="/scripts/cart.js"></script>
-        <!-- Logic for placing orders: checking minimum order value, placing the order, and showing confirmation -->
         <script src="/scripts/order.js"></script>
-        <!-- Logic for navigation elements and toggling pages/sections -->
         <script src="/scripts/navigation.js"></script>
-        <!-- Initialization script -->
         <script>
-        // Wait for the DOM to fully load
         document.addEventListener('DOMContentLoaded', () => {
-            // Render restaurants
             renderRestaurants();
-
-            // Default to selecting delivery
             selectDelivery();
-
-            // Add event listeners for toggling delivery
             document.getElementById('delivery-btn').addEventListener('click', () => toggleDelivery(true));
             document.getElementById('pickup-btn').addEventListener('click', () => toggleDelivery(false));
-
-            // Add event listener for the order button
             document.getElementById('order-btn').addEventListener('click', placeOrder);
-
-            // Add event listener for the mobile cart button (if present)
             const mobileCartBtn = document.getElementById('mobile-cart-btn');
             if (mobileCartBtn) {
                 mobileCartBtn.addEventListener('click', toggleMobileCart);
