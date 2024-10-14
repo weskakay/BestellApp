@@ -1,8 +1,58 @@
-/* ============================= */
-/*        Media Queries           */
-/* ============================= */
+@media screen and (max-width: 1850px) {
+    .cart-item-name {
+        font-size: 14px; /* Kleinere Schriftgröße für den Speisenname */
+    }
 
-/* Layout for screens under 900px */
+    .cart-item-price {
+        font-size: 14px; /* Kleinere Schriftgröße für den Preis */
+    }
+
+    .cart-item-quantity {
+        font-size: 14px; /* Kleinere Schriftgröße für die Menge */
+    }
+}
+
+@media screen and (max-width: 1700px) {
+    .cart-item-name {
+        font-size: 12px; /* Kleinere Schriftgröße für den Speisenname */
+    }
+
+    .cart-item-price {
+        font-size: 12px; /* Kleinere Schriftgröße für den Preis */
+    }
+
+    .cart-item-quantity {
+        font-size: 12px; /* Kleinere Schriftgröße für die Menge */
+    }
+}
+
+@media screen and (max-width: 1600px) {
+    .cart-item {
+        display: flex;
+        flex-direction: column; 
+        align-items: flex-start;
+        font-size: 16px; 
+    }
+
+    .cart-item-name-price {
+        display: flex;
+        justify-content: space-between;
+        width: 100%; 
+    }
+
+    .cart-item-controls {
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+        width: 100%; 
+    }
+
+    .cart-item-controls button {
+        flex-grow: 1; 
+        margin: 0 5px;
+    }
+}
+
 @media screen and (max-width: 900px) {
     .container {
         flex-direction: column;
@@ -25,6 +75,20 @@
 
     .restaurant img {
         max-width: 100%;
+    }
+
+    .cart-item {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        font-size: 16px; 
+    }
+
+    .cart-item-controls {
+        margin-top: 0;
+        display: flex;
+        justify-content: flex-end;
+        width: auto;
     }
 
     .cart-container {
@@ -62,7 +126,6 @@
     }
 }
 
-/* Layout for screens under 600px */
 @media screen and (max-width: 600px) {
     header {
         padding: 10px;
@@ -103,3 +166,43 @@
         padding: 10px;
     }
 }
+
+@media screen and (max-width: 440px) {
+    .cart-item {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cart-item-name-price {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .cart-item-controls {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    .cart-item-name {
+        font-size: 14px;
+        white-space: nowrap; 
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .cart-item-price {
+        font-size: 14px;
+        margin-left: auto;
+    }
+
+    #cart-items {
+        font-size: 14px;
+    }
+}
+
+

@@ -74,7 +74,7 @@ const restaurants = {
                 { name: "Gegrilltes Lachsfilet", price: 13.50, image: "/assets/img/Hauptgang/GegrilltesLachsfilet.jpg" }
             ],
             desserts: [
-                { name: "GebackeneBanane", price: 4.50, image: "/assets/img/Desserts/GebackeneBanane.jpg" },
+                { name: "Gebackene Banane", price: 4.50, image: "/assets/img/Desserts/GebackeneBanane.jpg" },
                 { name: "Affogato", price: 6.00, image: "/assets/img/Desserts/Affogato.webp" },
                 { name: "Möhrenkuchen", price: 5.50, image: "/assets/img/Desserts/Möhrenkuchen.jpg" }
             ]

@@ -30,12 +30,23 @@
 .cart-item-quantity {
     color: var(--primary-color);
     font-weight: bold;
-    margin-right: 10px;
+    margin-right: 8px;
 }
 
 .cart-item-name {
     flex-grow: 1;
     text-align: left;
+    margin-right: 8px;
+    white-space: nowrap; /* Verhindert Zeilenumbruch */
+    font-size: clamp(14px, 2vw, 18px); /* Automatische Anpassung der Textgröße */
+}
+
+.cart-item-price {
+    min-width: 80px;
+    text-align: right;
+    white-space: nowrap;
+    font-weight: bold;
+    color: var(--primary-color);
 }
 
 .cart-item-controls {
