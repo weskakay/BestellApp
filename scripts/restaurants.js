@@ -168,7 +168,6 @@ function toggleRestaurant(restaurantKey) {
     menuContainer.scrollIntoView({ behavior: 'smooth' });
 }
 
-
 function loadMenu(restaurantKey, container) {
     const restaurant = restaurants[restaurantKey];
     if (!restaurant) {
