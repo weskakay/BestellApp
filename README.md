@@ -14,6 +14,13 @@ BestellApp is a web application that allows users to order food from various res
     │   
     ├── scripts/                        # JavaScript files for functionality
     │   ├── cart.js                     # JavaScript for the cart functionality
+    │   │   ├── addToCart.js
+    │   │   ├── changeQuantity.js
+    │   │   ├── removeItem.js
+    │   │   ├── renderCart.js
+    │   │   └── calculateTotal.js
+    │   ├── templates
+    │   │   └── cartItemTemplate.js
     │   ├── chat.js                     # JavaScript for the chatbot feature
     │   ├── form.js                     # JavaScript for form validation and submission
     │   ├── main.js                     # Main JavaScript file for general functions

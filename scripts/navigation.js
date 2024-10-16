@@ -1,7 +1,3 @@
-// navigation.js
-
-
-// Function to scroll to the top of the page smoothly
 function scrollToTop() {
     window.scrollTo({
         top: 0,
@@ -9,7 +5,6 @@ function scrollToTop() {
     });
 }
 
-// Function to toggle the footer links
 function toggleFooterLinks() {
   const footerLinksContent = document.getElementById('footer-links-content');
   const pageContent = document.getElementById('page-content');
@@ -23,7 +18,6 @@ function toggleFooterLinks() {
   }
 }
 
-// Function to display different page content
 function showPage(event, pageId) {
   event.preventDefault();  // Prevents the default behavior that causes the page to scroll up
   const pageContent = document.getElementById('page-content');
@@ -386,8 +380,6 @@ function showPage(event, pageId) {
   pageContent.scrollIntoView({ behavior: 'smooth', block: 'end' });
 }
 
-// Initialization functions for various pages
-// Chatbot
 function initializeChatbot() {
   const chatForm = document.getElementById('chat-form');
   const chatInput = document.getElementById('chat-input');
@@ -484,7 +476,7 @@ function initializeChatbot() {
       chatMessages.scrollTop = chatMessages.scrollHeight;
   });
 }
-// Recommend a business
+
 function initializeRecommendForm() {
   const recommendForm = document.getElementById('recommend-form');
   const recommendMessage = document.getElementById('recommend-message');
@@ -496,7 +488,7 @@ function initializeRecommendForm() {
       recommendForm.reset();
   });
 }
-// Register a business
+
 function initializeRegisterForm() {
   const registerForm = document.getElementById('register-form');
   const registerMessage = document.getElementById('register-message');
@@ -508,7 +500,7 @@ function initializeRegisterForm() {
       registerForm.reset();
   });
 }
-// Become a driver
+
 function initializeDriverForm() {
   const driverForm = document.getElementById('driver-form');
   const driverMessage = document.getElementById('driver-message');
@@ -520,7 +512,7 @@ function initializeDriverForm() {
       driverForm.reset();
   });
 }
-// Jobs
+
 function initializeJobApplications() {
   const jobMessage = document.getElementById('job-message');
 

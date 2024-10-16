@@ -1,65 +1,83 @@
 let cart = [];
 
 function addToCart(restaurantKey, category, dishName, price) {
-    console.log(`Dish ${dishName} is being added to the cart.`);
-    const existingItemIndex = cart.findIndex(item => item.name === dishName && item.restaurant === restaurantKey);
-    if (existingItemIndex > -1) {
-        cart[existingItemIndex].quantity += 1;
-    } else {
-        cart.push({ restaurant: restaurantKey, category, name: dishName, price, quantity: 1 });
-    }
+    const existingItem = cart.find(item => item.name === dishName && item.restaurant === restaurantKey);
+    existingItem ? existingItem.quantity++ : cart.push({ restaurant: restaurantKey, category, name: dishName, price, quantity: 1 });
+    updateCart();
+}
+
+function updateCart() {
     renderCart();
     calculateTotal();
 }
+
 
 function renderCart() {
     const cartItemsContainer = document.getElementById('cart-items');
     cartItemsContainer.innerHTML = '';
 
     cart.forEach((item, index) => {
-        let cartItem = document.createElement('div');
+        const cartItem = document.createElement('div');
         cartItem.classList.add('cart-item');
 
-        cartItem.innerHTML = `
-            <span class="cart-item-quantity">${item.quantity}x</span>
-            <span class="cart-item-name">${item.name}</span>
-            <span class="cart-item-price">${(item.price * item.quantity).toFixed(2)} €</span>
-            <div class="cart-item-controls">
-                <button onclick="changeQuantity(${index}, 'increase')">+</button>
-                <span>${item.quantity}</span>
-                <button onclick="changeQuantity(${index}, 'decrease')">-</button>
-                <button onclick="removeItem(${index})">🗑️</button>
-            </div>
+        const quantity = document.createElement('span');
+        quantity.className = 'cart-item-quantity';
+        quantity.textContent = `${item.quantity}x`;
+
+        const name = document.createElement('span');
+        name.className = 'cart-item-name';
+        name.textContent = item.name;
+
+        const price = document.createElement('span');
+        price.className = 'cart-item-price';
+        price.textContent = `${(item.price * item.quantity).toFixed(2)} €`;
+
+        const controls = document.createElement('div');
+        controls.className = 'cart-item-controls';
+        controls.innerHTML = `
+            <button onclick="changeQuantity(${index}, 'increase')">+</button>
+            <span>${item.quantity}</span>
+            <button onclick="changeQuantity(${index}, 'decrease')">-</button>
+            <button onclick="removeItem(${index})">🗑️</button>
         `;
-        
+
+        cartItem.append(quantity, name, price, controls);
         cartItemsContainer.appendChild(cartItem);
     });
 
-    // Update the number of items in the mobile cart (if available)
+    updateMobileCartCount();
+}
+
+function updateMobileCartCount() {
     const mobileCartCount = document.getElementById('mobile-cart-count');
     if (mobileCartCount) {
-        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-        mobileCartCount.innerText = totalItems;
+        mobileCartCount.innerText = cart.reduce((sum, item) => sum + item.quantity, 0);
     }
 }
 
+
+
 function changeQuantity(index, action) {
+    const item = cart[index];
     if (action === 'increase') {
-        cart[index].quantity += 1;
-    } else if (action === 'decrease' && cart[index].quantity > 1) {
-        cart[index].quantity -= 1;
+        item.quantity++;
+    } else if (action === 'decrease' && item.quantity > 1) {
+        item.quantity--;
     } else {
         removeItem(index);
     }
-    renderCart();
-    calculateTotal();
+    updateCart();
 }
 
+
+
 function removeItem(index) {
-    cart.splice(index, 1);
-    renderCart();
-    calculateTotal();
+    if (index > -1 && index < cart.length) {
+        cart.splice(index, 1);
+        updateCart();
+    }
 }
+
 
 function calculateTotal() {
     let subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
