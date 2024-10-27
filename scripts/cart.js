@@ -11,7 +11,6 @@ function updateCart() {
     calculateTotal();
 }
 
-
 function renderCart() {
     const cartItemsContainer = document.getElementById('cart-items');
     cartItemsContainer.innerHTML = '';
@@ -55,8 +54,6 @@ function updateMobileCartCount() {
     }
 }
 
-
-
 function changeQuantity(index, action) {
     const item = cart[index];
     if (action === 'increase') {
@@ -69,15 +66,12 @@ function changeQuantity(index, action) {
     updateCart();
 }
 
-
-
 function removeItem(index) {
     if (index > -1 && index < cart.length) {
         cart.splice(index, 1);
         updateCart();
     }
 }
-
 
 function calculateTotal() {
     let subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
