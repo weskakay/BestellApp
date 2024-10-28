@@ -4,7 +4,7 @@ const restaurants = {
     italian: {
         name: "Italienisches Restaurant",
         fullName: "La Dolce Vita",
-        image: "/assets/img/Restaurants/Italien.jpg",
+        image: "./assets/img/Restaurants/Italien.jpg",
         description: "Genießen Sie authentische italienische Küche mit frischen Zutaten und traditionellen Rezepten.",
         rating: 4.5,
         deliveryPrice: 2.50,
@@ -29,7 +29,7 @@ const restaurants = {
     asian: {
         name: "Asiatisches Restaurant",
         fullName: "Sakura Garden",
-        image: "/assets/img/Restaurants/Asien.jpg",
+        image: "./assets/img/Restaurants/Asien.jpg",
         description: "Erleben Sie die Vielfalt der asiatischen Küche mit exotischen Aromen und Gewürzen.",
         rating: 4.5,
         deliveryPrice: 3.00,
@@ -54,7 +54,7 @@ const restaurants = {
     fusion: {
         name: "fusion",
         fullName: "La Fusion Restaurante",
-        image: "/assets/img/Restaurants/Fusion.jpg",
+        image: "./assets/img/Restaurants/Fusion.jpg",
         description: "Eine kreative Mischung aus verschiedenen Küchenstilen für ein einzigartiges Geschmackserlebnis.",
         rating: 5.0,
         deliveryPrice: 2.00,
