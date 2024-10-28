@@ -106,7 +106,7 @@ function renderRestaurants() {
 }
 
 function toggleRestaurant(restaurantKey) {
-    console.log(`Restaurant ${restaurantKey} ausgewählt.`);
+    // console.log(`Restaurant ${restaurantKey} ausgewählt.`);
 
     let menuContainer = document.querySelector(`#${restaurantKey}-menu`);
 
@@ -171,12 +171,12 @@ function toggleRestaurant(restaurantKey) {
 function loadMenu(restaurantKey, container) {
     const restaurant = restaurants[restaurantKey];
     if (!restaurant) {
-        console.error(`Restaurant ${restaurantKey} nicht gefunden.`);
+        //console.error(`Restaurant ${restaurantKey} nicht gefunden.`);
         return;
     }
 
     container.innerHTML = `<h3>Gerichte von ${restaurant.name}</h3>`;
-    console.log(`Gerichte von ${restaurant.name} werden geladen.`);
+    //console.log(`Gerichte von ${restaurant.name} werden geladen.`);
 
     for (const [category, dishes] of Object.entries(restaurant.dishes)) {
         let categoryTitle = '';
