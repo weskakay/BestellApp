@@ -127,3 +127,14 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+.empty-cart-overlay {
+    color: var(--primary-color);
+    text-align: center;
+    font-size: 1.2em;
+    padding: 20px;
+    background-color: var(--secondary-color);
+    border-radius: 5px;
+}
+
+

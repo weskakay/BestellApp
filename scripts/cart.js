@@ -15,6 +15,11 @@ function renderCart() {
     const cartItemsContainer = document.getElementById('cart-items');
     cartItemsContainer.innerHTML = '';
 
+    if (cart.length === 0) {
+        cartItemsContainer.innerHTML = '<p class="empty-cart-overlay">Ihr Warenkorb ist leer.</p>';
+        return;
+    }
+
     cart.forEach((item, index) => {
         const cartItem = document.createElement('div');
         cartItem.classList.add('cart-item');
