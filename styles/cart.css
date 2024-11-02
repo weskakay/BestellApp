@@ -152,12 +152,3 @@
     cursor: pointer;
     z-index: 1000;
 }
-
-@media (max-width: 768px) {
-    #mobile-cart-btn {
-        display: block;
-    }
-}
-
-
-
