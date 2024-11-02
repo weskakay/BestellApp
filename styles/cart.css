@@ -137,4 +137,27 @@
     border-radius: 5px;
 }
 
+#mobile-cart-btn {
+    display: none; 
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--primary-color); 
+    color: var(--secondary-color); 
+    padding: 15px 20px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    font-size: 1em;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+@media (max-width: 768px) {
+    #mobile-cart-btn {
+        display: block;
+    }
+}
+
+
 

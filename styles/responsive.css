@@ -124,6 +124,10 @@
     .footer-links-content a {
         margin: 5px 0;
     }
+    
+    #mobile-cart-btn {
+        display: block;
+    }
 }
 
 @media screen and (max-width: 600px) {
