@@ -53,7 +53,7 @@
               <button id="confirm-switch" class="btn">Ja, wechseln</button>
               <button id="cancel-switch" class="btn">Nein, weiter</button>
             </div>
-          </div>
+        </div>
         <footer>
             <div class="footer-content">
                 <div class="footer-logo">
@@ -94,19 +94,27 @@
         <script src="./scripts/restaurants.js"></script>
         <script src="./scripts/cart.js"></script>
         <script src="./scripts/order.js"></script>
-        <script src="./scripts/navigation.js"></script>
+            <script src="./scripts/navigation/toggleFooterLinks.js"></script>
+            <script src="./scripts/navigation/showPage.js"></script>
+            <script src="./scripts/navigation/initializeChatbot.js"></script>
+            <script src="./scripts/navigation/initializeRecommendForm.js"></script>
+            <script src="./scripts/navigation/initializeRegisterForm.js"></script>
+            <script src="./scripts/navigation/initializeDriverForm.js"></script>
+            <script src="./scripts/navigation/initializeJobApplications.js"></script>
         <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            renderRestaurants();
-            selectDelivery();
-            document.getElementById('delivery-btn').addEventListener('click', () => toggleDelivery(true));
-            document.getElementById('pickup-btn').addEventListener('click', () => toggleDelivery(false));
-            document.getElementById('order-btn').addEventListener('click', placeOrder);
-            const mobileCartBtn = document.getElementById('mobile-cart-btn');
-            if (mobileCartBtn) {
-                mobileCartBtn.addEventListener('click', toggleMobileCart);
-            }
-        });
+            document.addEventListener('DOMContentLoaded', () => {
+                renderRestaurants();
+                selectDelivery();
+                document.getElementById('delivery-btn').addEventListener('click', () => toggleDelivery(true));
+                document.getElementById('pickup-btn').addEventListener('click', () => toggleDelivery(false));
+                document.getElementById('order-btn').addEventListener('click', placeOrder);
+                const mobileCartBtn = document.getElementById('mobile-cart-btn');
+                if (mobileCartBtn) {
+                    mobileCartBtn.addEventListener('click', toggleMobileCart);
+                }
+            });
         </script>
     </body>
 </html>
+
+

@@ -122,3 +122,20 @@ Die BestellApp ist eine Webanwendung, die Benutzern ermöglicht, Essen bei versc
     Kontakt: Kontaktformular für Anfragen und Support.
     2.6. Kundensupport und Chatbot
     Ein integrierter Chatbot unterstützt Benutzer bei Fragen und Problemen in Echtzeit.
+
+
+
+    scripts/
+  ├── scrollToTop.js
+  ├── toggleFooterLinks.js
+  ├── showKundenservicePage.js
+  ├── showGeschaeftEmpfehlenPage.js
+  ├── showGeschaeftAnmeldenPage.js
+  ├── showFahrerWerdenPage.js
+  ├── showJobsPage.js
+  ├── showStempelkartenPage.js
+  ├── showAGBPage.js
+  ├── showDatenschutzPage.js
+  ├── showImpressumPage.js
+  ├── showCookiesPage.js
+  └── mainNavigation.js
