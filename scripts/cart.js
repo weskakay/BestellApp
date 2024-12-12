@@ -2,13 +2,47 @@ let cart = [];
 
 function addToCart(restaurantKey, category, dishName, price) {
     const existingItem = cart.find(item => item.name === dishName && item.restaurant === restaurantKey);
-    existingItem ? existingItem.quantity++ : cart.push({ restaurant: restaurantKey, category, name: dishName, price, quantity: 1 });
+    if (existingItem) {
+        existingItem.quantity++;
+    } else {
+        cart.push({ restaurant: restaurantKey, category, name: dishName, price, quantity: 1 });
+    }
     updateCart();
 }
 
 function updateCart() {
     renderCart();
     calculateTotal();
+}
+
+// Hilfsfunktion zur Erstellung eines Cart-Items
+function createCartItemElement(item, index) {
+    const cartItem = document.createElement('div');
+    cartItem.classList.add('cart-item');
+
+    const quantity = document.createElement('span');
+    quantity.className = 'cart-item-quantity';
+    quantity.textContent = `${item.quantity}x`;
+
+    const name = document.createElement('span');
+    name.className = 'cart-item-name';
+    name.textContent = item.name;
+
+    const price = document.createElement('span');
+    price.className = 'cart-item-price';
+    price.textContent = `${(item.price * item.quantity).toFixed(2)} €`;
+
+    const controls = document.createElement('div');
+    controls.className = 'cart-item-controls';
+    controls.innerHTML = `
+        <button onclick="changeQuantity(${index}, 'increase')">+</button>
+        <span>${item.quantity}</span>
+        <button onclick="changeQuantity(${index}, 'decrease')">-</button>
+        <button onclick="removeItem(${index})">🗑️</button>
+    `;
+
+    cartItem.append(quantity, name, price, controls);
+    return cartItem;
 }
 
 function renderCart() {
@@ -21,32 +55,8 @@ function renderCart() {
     }
 
     cart.forEach((item, index) => {
-        const cartItem = document.createElement('div');
-        cartItem.classList.add('cart-item');
-
-        const quantity = document.createElement('span');
-        quantity.className = 'cart-item-quantity';
-        quantity.textContent = `${item.quantity}x`;
-
-        const name = document.createElement('span');
-        name.className = 'cart-item-name';
-        name.textContent = item.name;
-
-        const price = document.createElement('span');
-        price.className = 'cart-item-price';
-        price.textContent = `${(item.price * item.quantity).toFixed(2)} €`;
-
-        const controls = document.createElement('div');
-        controls.className = 'cart-item-controls';
-        controls.innerHTML = `
-            <button onclick="changeQuantity(${index}, 'increase')">+</button>
-            <span>${item.quantity}</span>
-            <button onclick="changeQuantity(${index}, 'decrease')">-</button>
-            <button onclick="removeItem(${index})">🗑️</button>
-        `;
-
-        cartItem.append(quantity, name, price, controls);
-        cartItemsContainer.appendChild(cartItem);
+        const cartItemElement = createCartItemElement(item, index);
+        cartItemsContainer.appendChild(cartItemElement);
     });
 
     updateMobileCartCount();
@@ -59,20 +69,31 @@ function updateMobileCartCount() {
     }
 }
 
-function changeQuantity(index, action) {
-    const item = cart[index];
-    if (action === 'increase') {
-        item.quantity++;
-    } else if (action === 'decrease' && item.quantity > 1) {
-        item.quantity--;
+// Logik zur Mengenerhöhung und -verringerung aufteilen
+function increaseQuantity(index) {
+    cart[index].quantity++;
+    updateCart();
+}
+
+function decreaseQuantity(index) {
+    if (cart[index].quantity > 1) {
+        cart[index].quantity--;
     } else {
         removeItem(index);
     }
     updateCart();
 }
 
+function changeQuantity(index, action) {
+    if (action === 'increase') {
+        increaseQuantity(index);
+    } else if (action === 'decrease') {
+        decreaseQuantity(index);
+    }
+}
+
 function removeItem(index) {
-    if (index > -1 && index < cart.length) {
+    if (index >= 0 && index < cart.length) {
         cart.splice(index, 1);
         updateCart();
     }
@@ -92,19 +113,14 @@ function calculateTotal() {
         orderMessage.style.display = 'block';
         orderBtn.disabled = true;
         orderBtn.classList.remove('active');
-        return; 
+        return;
     }
 
-    if (deliverySelected) {
-        if (restaurants[selectedRestaurant]) {
-            deliveryCost = restaurants[selectedRestaurant].deliveryPrice;
-            total += deliveryCost;
-            document.getElementById('delivery-cost').innerText = `${deliveryCost.toFixed(2)} €`;
-        } else {
-            document.getElementById('delivery-cost').innerText = `0.00 €`;
-        }
+    if (deliverySelected && restaurants[selectedRestaurant]) {
+        deliveryCost = restaurants[selectedRestaurant].deliveryPrice;
+        total += deliveryCost;
+        document.getElementById('delivery-cost').innerText = `${deliveryCost.toFixed(2)} €`;
     } else {
-        deliveryCost = 0;
         document.getElementById('delivery-cost').innerText = `0.00 €`;
     }
 
@@ -125,6 +141,7 @@ function calculateTotal() {
     }
 }
 
+// Mobiler Warenkorb-Button
 const mobileCartButton = document.createElement('button');
 mobileCartButton.id = 'mobile-cart-btn';
 mobileCartButton.textContent = 'Warenkorb';
