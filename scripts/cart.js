@@ -15,7 +15,6 @@ function updateCart() {
     calculateTotal();
 }
 
-// Hilfsfunktion zur Erstellung eines Cart-Items
 function createCartItemElement(item, index) {
     const cartItem = document.createElement('div');
     cartItem.classList.add('cart-item');
@@ -69,7 +68,6 @@ function updateMobileCartCount() {
     }
 }
 
-// Logik zur Mengenerhöhung und -verringerung aufteilen
 function increaseQuantity(index) {
     cart[index].quantity++;
     updateCart();
@@ -141,7 +139,6 @@ function calculateTotal() {
     }
 }
 
-// Mobiler Warenkorb-Button
 const mobileCartButton = document.createElement('button');
 mobileCartButton.id = 'mobile-cart-btn';
 mobileCartButton.textContent = 'Warenkorb';
