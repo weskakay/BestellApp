@@ -33,5 +33,5 @@ function placeOrder() {
         orderConfirmation.remove();
         orderPlaced = false;
         location.reload();
-    }, 4000);
+    }, 2000);
 }
