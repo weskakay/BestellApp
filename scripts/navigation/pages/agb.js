@@ -1,4 +1,4 @@
-export function agb() {
+function agb() {
   return `
       <h2>Allgemeine Geschäftsbedingungen (AGB)</h2>
               <div class="legal-text">

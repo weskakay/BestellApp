@@ -1,5 +1,5 @@
-export function kundenservice() {
-  return `
+function kundenservice() {
+  content = `
       <h2>Kundenservice</h2>
             <div id="chat-container">
                 <div id="chat-window">
