@@ -1,6 +1,5 @@
-import { createCartItemElement } from './createCartItemElement.js';
-
-export function renderCart(cart, cartItemsContainer, updateMobileCartCount) {
+function renderCart() {
+    const cartItemsContainer = document.getElementById('cart-items');
     cartItemsContainer.innerHTML = '';
 
     if (cart.length === 0) {
@@ -14,4 +13,11 @@ export function renderCart(cart, cartItemsContainer, updateMobileCartCount) {
     });
 
     updateMobileCartCount();
+}
+
+function updateMobileCartCount() {
+    const mobileCartCount = document.getElementById('mobile-cart-count');
+    if (mobileCartCount) {
+        mobileCartCount.innerText = cart.reduce((sum, item) => sum + item.quantity, 0);
+    }
 }

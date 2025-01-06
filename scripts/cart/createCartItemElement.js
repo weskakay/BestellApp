@@ -1,4 +1,4 @@
-export function createCartItemElement(item, index) {
+function createCartItemElement(item, index) {
     const cartItem = document.createElement('div');
     cartItem.classList.add('cart-item');
 
